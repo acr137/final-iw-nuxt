@@ -1,4 +1,4 @@
-# nuxt-adi
+# nuxt-iw
 
 ## Build Setup
 
