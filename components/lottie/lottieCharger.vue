@@ -1,8 +1,8 @@
 <template>
   <div>
     <lottie
-      :width="50"
-      :height="50"
+      :width="width"
+      :height="height"
       :options="lottieOptions"
       @animCreated="handleAnimation"
     />
@@ -18,9 +18,17 @@ export default {
     lottie,
   },
   props: {
+    width: {
+      type: Number,
+      default: 100,
+    },
+    height: {
+      type: Number,
+      default: 100,
+    },
     lottieName: {
       type: String,
-      default: '',
+      default: 'hearthbeat',
     },
   },
   data() {
@@ -30,11 +38,9 @@ export default {
       lottieOptions: null,
     }
   },
-  async mounted() {
-    this.animationData = await import(
-      '@/assets/lotties/' + this.lottieName + '.json'
-    )
-    this.lottieOptions = { animationData: this.animationData.default }
+  created() {
+    this.animationData = require(`@/assets/lotties/${this.lottieName}.json`)
+    this.lottieOptions = { animationData: this.animationData }
   },
   methods: {
     handleAnimation: function (anim) {
