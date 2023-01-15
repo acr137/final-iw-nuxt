@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between font-oswald">
+  <div class="flex justify-between mb-6 font-oswald">
     <div class="flex items-center">
       <div class="p-2 mr-3 bg-gray-500 rounded-full">
         <lottie-charger
