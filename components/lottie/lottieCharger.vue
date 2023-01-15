@@ -13,7 +13,7 @@
 import lottie from 'vue-lottie/src/lottie.vue'
 
 export default {
-  name: 'LottieFiles',
+  name: 'LottieCharger',
   components: {
     lottie,
   },
