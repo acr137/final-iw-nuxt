@@ -1,9 +1,9 @@
 <template>
-  <div></div>
+  <h1>Users</h1>
 </template>
 
 <script>
 export default {
-  name: 'Refounds',
+  name: 'UsersPanel',
 }
 </script>

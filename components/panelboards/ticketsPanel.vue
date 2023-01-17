@@ -1,9 +1,9 @@
 <template>
-  <div></div>
+  <h1>Tickets</h1>
 </template>
 
 <script>
 export default {
-  name: 'Users',
+  name: 'TicketsPanel',
 }
 </script>

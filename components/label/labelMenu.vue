@@ -1,7 +1,17 @@
 <template>
-  <div class="flex items-center cursor-pointer">
-    <svg-icon class="mr-2 w-7 h-7" :name="icon" />
-    <p class="text-lg">{{ name }}</p>
+  <div
+    class="flex items-center cursor-pointer"
+    :class="{ 'bg-yellowIw px-2 py-1 rounded-lg': isSelected }"
+    @click="clickEmit"
+  >
+    <svg-icon
+      class="mr-2 w-7 h-7"
+      :name="icon"
+      :class="{ 'fill-white': isSelected }"
+    />
+    <p class="text-lg" :class="{ 'text-white font-bold': isSelected }">
+      {{ name }}
+    </p>
   </div>
 </template>
 
@@ -17,6 +27,21 @@ export default {
       type: String,
       default: 'alert',
     },
+    isSelected: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    clickEmit() {
+      this.$emit('clickLabel', this.icon)
+    },
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.bg-yellowIw {
+  background-color: #fdd835;
+}
+</style>
