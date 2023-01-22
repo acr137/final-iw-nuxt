@@ -9,12 +9,13 @@
           :lottie-name="'hearthbeat'"
         />
       </div>
-      <h1 class="text-2xl font-bold">TPV Virtual</h1>
+      <h1 class="text-2xl font-bold bg-blue">TPV Virtual</h1>
     </div>
     <custom-button
       v-if="!isLogin"
       text="Iniciar Sesión"
       style-button="bg-yellowIw rounded-md font-bold text-white px-3"
+      @click="toggleLoginModal"
     >
       <template #icon>
         <svg-icon
@@ -22,23 +23,62 @@
           class="w-5 h-5 text-white stroke-current fill-transparent"
         /> </template
     ></custom-button>
+
+    <modal-base
+      :open="showLoginModal"
+      :has-close-icon="true"
+      @closedModal="toggleLoginModal"
+    >
+      <template #mainContent>
+        <login-form
+          @closeForm="toggleLoginModal"
+          @openRegisterModal="toggleRegisterModal"
+        />
+      </template>
+    </modal-base>
+
+    <modal-base
+      :open="showRegisterModal"
+      :has-close-icon="true"
+      @closedModal="toggleRegisterModal"
+    >
+      <template #mainContent>
+        <register-form @closeForm="toggleRegisterModal"></register-form>
+      </template>
+    </modal-base>
   </div>
 </template>
 
 <script>
 import LottieCharger from '@/components/lottie/lottieCharger.vue'
 import CustomButton from '@/components/button/CustomButton.vue'
+import LoginForm from '@/components/forms/loginForm.vue'
+import RegisterForm from '@/components/forms/registerForm.vue'
 
 export default {
   name: 'TheHeader',
   components: {
     LottieCharger,
     CustomButton,
+    LoginForm,
+    RegisterForm,
   },
   data() {
     return {
       isLogin: false,
+      showLoginModal: false,
+      showRegisterModal: false,
     }
+  },
+  methods: {
+    toggleLoginModal() {
+      this.showLoginModal = !this.showLoginModal
+    },
+    toggleRegisterModal() {
+      if (this.showLoginModal) this.showLoginModal = false
+
+      this.showRegisterModal = !this.showRegisterModal
+    },
   },
 }
 </script>
