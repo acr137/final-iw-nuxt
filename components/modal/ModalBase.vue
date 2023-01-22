@@ -7,7 +7,7 @@
 
     <div
       :class="[
-        'relative w-full px-4 pt-5 pb-4 overflow-hidden transition-all transform bg-white rounded-lg shadow-xl sm:max-w-lg sm:p-6',
+        'relative w-full px-6 pt-5 pb-4 overflow-hidden transition-all transform bg-white rounded-lg shadow-xl sm:max-w-lg sm:p-6',
         customContainerClass,
       ]"
     >
@@ -53,7 +53,7 @@ export default {
   computed: {
     modalOpened() {
       if (this.open)
-        return 'z-50 fixed inset-x-0 px-4 pb-6 inset-0 sm:p-0 flex items-center justify-center'
+        return 'z-50 fixed inset-x-0 px-6 pb-6 inset-0 sm:p-0 flex items-center justify-center'
       return 'hidden'
     },
   },

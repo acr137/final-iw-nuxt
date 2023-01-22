@@ -67,7 +67,7 @@ export default {
     return {
       isLogin: false,
       showLoginModal: false,
-      showRegisterModal: false,
+      showRegisterModal: true,
     }
   },
   methods: {
