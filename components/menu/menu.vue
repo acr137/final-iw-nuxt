@@ -26,7 +26,16 @@
         />
       </div>
     </div>
-    <hr class="border" />
+    <hr class="my-1 border" />
+    <div>
+      <p class="mb-1 font-bold text-gray-600">SETTINGS</p>
+      <label-menu
+        name="User config"
+        icon="config"
+        :is-selected="'config' === currentLabel"
+        @clickLabel="clickLabel"
+      />
+    </div>
   </div>
 </template>
 
