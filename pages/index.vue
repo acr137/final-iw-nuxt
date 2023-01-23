@@ -6,7 +6,7 @@
       @clickLabel="changeCurrentLabel"
     />
     <div class="w-4/5 bg-gray-100 block-shadow">
-      <component :is="currentPanel"></component>
+      <component :is="currentPanel" class="h-186"></component>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      currentPanel: 'dashboard-panel',
+      currentPanel: 'users-panel',
       currentLabel: 'home',
     }
   },

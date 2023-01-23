@@ -39,9 +39,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.bg-yellowIw {
-  background-color: #fdd835;
-}
-</style>

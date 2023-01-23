@@ -41,7 +41,7 @@
       <div class="px-1.5">
         <button
           type="submit"
-          class="flex items-center w-full py-3 mb-3 text-lg font-bold text-white rounded cursor-pointer bg-yellowIw"
+          class="flex items-center w-full py-3 mb-3 text-lg font-bold text-white rounded cursor-pointer bg-yellowIw hover:bg-yellowIwHover"
         >
           <div class="flex items-center mx-auto">
             <p>Iniciar Sesión</p>
@@ -118,13 +118,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.bg-yellowIw {
-  background-color: #fdd835;
-}
-
-.bg-yellowIw:hover {
-  background-color: #d8b727;
-}
-</style>
