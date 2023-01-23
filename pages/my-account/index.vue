@@ -11,9 +11,11 @@
       >
         <div class="w-full p-10">
           <div
-            class="flex items-center w-40 h-40 m-auto bg-black rounded-full shadow-md "
+            class="flex items-center w-40 h-40 m-auto bg-black rounded-full shadow-md"
           >
-            <p class="m-auto text-6xl font-medium text-center text-white">{{initial}}</p>
+            <p class="m-auto text-6xl font-medium text-center text-white">
+              {{ initial }}
+            </p>
           </div>
 
           <!-- line divider -->

@@ -1,40 +1,33 @@
 <template>
-  <div
+  <nuxt-link
     class="flex items-center cursor-pointer"
     :class="{ 'bg-yellowIw px-2 py-1 rounded-lg': isSelected }"
-    @click="clickEmit"
+    :to="label.link"
   >
     <svg-icon
       class="mr-2 w-7 h-7"
-      :name="icon"
+      :name="label.icon"
       :class="{ 'fill-white': isSelected }"
     />
     <p class="text-lg" :class="{ 'text-white font-bold': isSelected }">
-      {{ name }}
+      {{ label.name }}
     </p>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
 export default {
   name: 'LabelMenu',
   props: {
-    name: {
-      type: String,
-      default: 'Label',
-    },
-    icon: {
-      type: String,
-      default: 'alert',
+    label: {
+      type: Object,
+      default: () => {
+        return {}
+      },
     },
     isSelected: {
       type: Boolean,
       default: false,
-    },
-  },
-  methods: {
-    clickEmit() {
-      this.$emit('clickLabel', this.icon)
     },
   },
 }

@@ -1,10 +1,8 @@
 <template>
   <div class="text-gray-900">
     <label-menu
-      name="Dashboard"
-      icon="home"
+      :label="dashboardLabel"
       :is-selected="'home' === currentLabel"
-      @clickLabel="clickLabel"
     />
     <hr class="my-1 border" />
     <div class="flex items-center justify-between mb-1">
@@ -19,10 +17,8 @@
       <div v-for="(line, index) in lines" :key="index">
         <label-menu
           class="mb-2"
-          :name="line.name"
-          :icon="line.icon"
+          :label="line"
           :is-selected="line.icon === currentLabel"
-          @clickLabel="clickLabel"
         />
       </div>
     </div>
@@ -30,10 +26,8 @@
     <div>
       <p class="mb-1 font-bold text-gray-600">SETTINGS</p>
       <label-menu
-        name="User config"
-        icon="config"
+        :label="userConfigLabel"
         :is-selected="'config' === currentLabel"
-        @clickLabel="clickLabel"
       />
     </div>
   </div>
@@ -47,31 +41,39 @@ export default {
   components: {
     LabelMenu,
   },
-  props: {
-    currentLabel: {
-      type: String,
-      default: 'home',
-    },
-  },
   data() {
     return {
+      dashboardLabel: {
+        name: 'Dashboard',
+        icon: 'home',
+        link: '/',
+      },
+      userConfigLabel: {
+        name: 'My config',
+        icon: 'config',
+        link: '/my-account',
+      },
       openMenu: true,
       lines: [
         {
           name: 'Usuarios',
           icon: 'users',
+          link: '/usuarios',
         },
         {
           name: 'Pagos',
           icon: 'pay',
+          link: '/pagos',
         },
         {
           name: 'Tickets',
           icon: 'ticket',
+          link: '/tickets',
         },
         {
           name: 'Devoluciones',
           icon: 'refound',
+          link: '/devoluciones',
         },
       ],
     }
@@ -80,13 +82,20 @@ export default {
     iconMenu() {
       return this.openMenu ? 'arrow-up' : 'arrow-down'
     },
+    currentLabel() {
+      let currentLabel = 'home'
+      if (this.$route.path === '/usuarios') currentLabel = 'users'
+      if (this.$route.path === '/pagos') currentLabel = 'pay'
+      if (this.$route.path === '/tickets') currentLabel = 'ticket'
+      if (this.$route.path === '/devoluciones') currentLabel = 'refound'
+      if (this.$route.path === '/my-account') currentLabel = 'config'
+
+      return currentLabel
+    },
   },
   methods: {
     toggleMenu() {
       this.openMenu = !this.openMenu
-    },
-    clickLabel(label) {
-      this.$emit('clickLabel', label)
     },
   },
 }

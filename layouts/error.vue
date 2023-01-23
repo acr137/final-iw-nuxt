@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen text-center bg-white">
+  <div class="w-full text-center bg-white h-186">
     <div v-if="error.statusCode === 404">
       <lottie-charger :width="500" :height="500" :lottie-name="'error404'" />
       <h1 class="mb-5 text-4xl font-bold text-gray-800 font-oswald">
