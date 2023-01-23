@@ -80,7 +80,7 @@
           <p>
             <button
               type="submit"
-              class="px-4 py-2 text-lg font-bold text-gray-800 rounded cursor-pointer hover:shadow-md bg-yellowIw hover:bg-green-700"
+              class="px-4 py-2 text-lg font-bold text-gray-800 rounded cursor-pointer hover:shadow-md bg-yellowIw hover:bg-yellowIwHover"
             >
               Registrarse
             </button>
@@ -155,13 +155,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.bg-yellowIw {
-  background-color: #fdd835;
-}
-
-.bg-yellowIw:hover {
-  background-color: #d8b727;
-}
-</style>

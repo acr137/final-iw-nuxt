@@ -73,7 +73,20 @@ module.exports = {
       'blue-light': theme('colors.blue.500'),
       'navy-light': theme('colors.navy.500'),
     }),
-    extend: {},
+    extend: {
+      height: {
+        108: '27rem',
+        120: '30rem',
+        128: '32rem',
+        144: '36rem',
+        186: '42rem',
+        fit: 'fit-content',
+      },
+      colors: {
+        yellowIw: '#fdd835',
+        yellowIwHover: '#d8b727',
+      },
+    },
   },
   plugins: [],
 }

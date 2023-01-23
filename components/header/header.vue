@@ -14,7 +14,7 @@
     <custom-button
       v-if="!isLogin"
       text="Iniciar Sesión"
-      style-button="bg-yellowIw rounded-md font-bold text-white px-3"
+      style-button="bg-yellowIw hover:bg-yellowIwHover rounded-md font-bold text-white px-3"
       @click="toggleLoginModal"
     >
       <template #icon>
@@ -67,7 +67,7 @@ export default {
     return {
       isLogin: false,
       showLoginModal: false,
-      showRegisterModal: true,
+      showRegisterModal: false,
     }
   },
   methods: {
@@ -82,13 +82,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.bg-yellowIw {
-  background-color: #fdd835;
-}
-
-.bg-yellowIw:hover {
-  background-color: #d8b727;
-}
-</style>
