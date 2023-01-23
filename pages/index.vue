@@ -18,6 +18,7 @@ import UsersPanel from '~/components/panelboards/usersPanel.vue'
 import TicketsPanel from '~/components/panelboards/ticketsPanel.vue'
 import PaymentsPanel from '~/components/panelboards/paymentsPanel.vue'
 import RefoundsPanel from '~/components/panelboards/refoundsPanel.vue'
+import UserAccountPanel from '~/components/panelboards/userAccountPanel.vue'
 
 export default {
   name: 'Index',
@@ -28,6 +29,7 @@ export default {
     TicketsPanel,
     PaymentsPanel,
     RefoundsPanel,
+    UserAccountPanel
   },
   data() {
     return {
@@ -61,6 +63,11 @@ export default {
 
         case 'refound': {
           this.currentPanel = 'refounds-panel'
+          break
+        }
+
+        case 'config': {
+          this.currentPanel = 'user-account-panel'
           break
         }
       }
