@@ -29,11 +29,11 @@ export default {
     TicketsPanel,
     PaymentsPanel,
     RefoundsPanel,
-    UserAccountPanel
+    UserAccountPanel,
   },
   data() {
     return {
-      currentPanel: 'users-panel',
+      currentPanel: 'dashboard-panel',
       currentLabel: 'home',
     }
   },

@@ -40,8 +40,8 @@
             <td>{{ user.id }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.company }}</td>
-            <td>{{ user.admin }}</td>
+            <td>{{ user.nombreEmpresa }}</td>
+            <td>{{ user.tipoUsuario }}</td>
           </tr>
         </tbody>
       </table>
@@ -84,29 +84,22 @@ export default {
           id: 1,
           name: 'Alejandro Company',
           email: 'alerinua@gmail.com',
-          company: 'Alejandro S.L',
-          admin: true,
+          nombreEmpresa: 'Alejandro S.L',
+          tipoUsuario: 'normal',
         },
         {
-          id: 2,
-          name: 'Antonio Sánchez',
-          email: 'antonio@gmail.com',
-          company: 'Antonio S.L',
-          admin: true,
+          id: 1,
+          name: 'Alejandro Company',
+          email: 'alerinua@gmail.com',
+          nombreEmpresa: 'Alejandro S.L',
+          tipoUsuario: 'normal',
         },
         {
-          id: 3,
-          name: 'Roberto Castillo',
-          email: 'roberto@gmail.com',
-          company: 'Roberto S.L',
-          admin: false,
-        },
-        {
-          id: 4,
-          name: 'María Pérez',
-          email: 'maria@gmail.com',
-          company: 'Maria S.L',
-          admin: true,
+          id: 1,
+          name: 'Alejandro Company',
+          email: 'alerinua@gmail.com',
+          nombreEmpresa: 'Alejandro S.L',
+          tipoUsuario: 'normal',
         },
       ],
     }
