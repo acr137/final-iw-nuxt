@@ -14,9 +14,9 @@
       ></custom-button>
     </div>
 
-    <div class="flex items-center w-full">
-      <div class="w-1/2 px-4 mr-2 bg-white rounded-lg h-128">
-        <h2 class="mt-2 mb-10 text-xl font-bold underline font-oswald">
+    <div class="flex items-center mx-2">
+      <div class="w-1/2 px-4 mr-2 bg-white rounded-lg h-108">
+        <h2 class="mt-4 mb-12 text-2xl font-bold underline font-oswald">
           Datos de la devolución
         </h2>
 
@@ -31,77 +31,54 @@
           <p class="mb-4">
             <span class="font-bold">Concepto:</span> {{ devolucion.concepto }}
           </p>
-          <p class="mb-4">
+          <p class="mb-">
             <span class="font-bold">Fecha:</span> {{ devolucion.fecha }}
           </p>
           <p
-            class="px-4 py-1 text-white uppercase bg-blue-400 w-fit rounded-xl"
+            class="px-4 py-1 mt-10 font-bold text-white uppercase bg-blue-400 w-fit rounded-xl"
           >
             {{ devolucion.estado }}
           </p>
         </div>
       </div>
-      <div class="w-1/2 ml-2 bg-white rounded-lg h-128">a</div>
+      <div class="w-1/2 ml-2 bg-white rounded-lg h-108">a</div>
+    </div>
+
+    <div class="flex items-center mx-2 mt-6">
+      <custom-button
+        text="Denegar"
+        style-button="bg-gray-400 hover:bg-gray-500 px-4 py-2 text-white rounded-md mr-2 font-bold"
+      >
+        <template #icon>
+          <svg-icon
+            name="x"
+            class="w-5 h-5 text-white fill-white stroke-white"
+          />
+        </template>
+      </custom-button>
+      <custom-button
+        text="Confirmar devolución"
+        style-button="bg-yellowIw hover:bg-yellowIwHover px-4 py-2 text-white rounded-md font-bold"
+      >
+        <template #icon>
+          <svg-icon
+            name="right-arrow"
+            class="w-5 h-5 text-white fill-white stroke-white"
+          />
+        </template>
+      </custom-button>
     </div>
   </div>
-
-  <!-- <div class="px-10 py-6 h-186">
-
-    <div class="mx-2 mb-4">
-      <div class="flex items-center">
-        <h1 class="text-3xl font-bold font-oswald">Devolución de: #1234</h1>
-      </div>
-    </div>
-
-
-    <div class="flex items-center justify-between mb-4">
-      <div v-for="(data, index) in panelData" :key="index" class="w-full">
-        <div class="p-3 mx-2 bg-white rounded-lg labelShadow">
-          <p class="text-xl font-bold text-black font-nunito">
-            {{ data.label }}
-          </p>
-          <p class="text-lg text-grey-600">{{ data.value }}</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="flex justify-between mb-4">
-      <div class="w-full">
-        <div class="p-3 mx-2 bg-white rounded-lg labelShadow">
-          <p class="text-xl font-bold text-black font-nunito">
-            {{ refoundData.label }}
-          </p>
-
-          <div class="w-full mt-3 border-t border-gray-300"></div>
-          <p class="text-lg text-grey-600">{{ refoundData.value.id }}</p>
-          <br />
-          <p class="text-lg text-grey-600">{{ refoundData.value.importe }}</p>
-          <br />
-          <p class="text-lg text-grey-600">
-            {{ refoundData.value.description }}
-          </p>
-          <br />
-          <p class="text-lg text-grey-600">{{ refoundData.value.date }}</p>
-        </div>
-      </div>
-      <div class="w-full">
-        <div class="p-3 mx-2 bg-white rounded-lg labelShadow">
-          <p class="text-xl font-bold text-black font-nunito">
-            {{ operarioData.label }}
-          </p>
-
-          <div class="w-full mt-3 border-t border-gray-300"></div>
-          <p class="text-lg text-grey-600">{{ operarioData.value }}</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
+import CustomButton from '@/components/button/CustomButton.vue'
+
 export default {
   name: 'DetallesDevolucion',
+  components: {
+    CustomButton,
+  },
   data() {
     return {
       isLogin: true,
@@ -129,20 +106,6 @@ export default {
           value: 'ebl29@alu.ua.es',
         },
       ],
-      refoundData: {
-        label: 'Detalles de la devolucion',
-        value: {
-          id: '#1234',
-          importe: '$38.99',
-          description: 'El producto se ha entregado en mal estado',
-          date: '29 de diciembre de 2022',
-        },
-      },
-      operarioData: {
-        label: 'Observaciones del operario',
-        value:
-          'El producto ha sido recibido en su correcto y parece en correcto estado para efectuar la devolución.',
-      },
     }
   },
 }
