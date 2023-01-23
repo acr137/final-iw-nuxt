@@ -12,6 +12,15 @@ class AuthService {
     }
   }
 
+  async modifyUser(user) {
+    try {
+      const response = await axios.put(API_URL + 'users', user)
+      return response.data
+    } catch (error) {
+      this.$log.error(error)
+    }
+  }
+
   async loginUser(user) {
     try {
       const response = await axios.post(API_URL + 'login', user)
