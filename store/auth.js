@@ -30,6 +30,10 @@ export const actions = {
     return await AuthService.registerUser(user)
   },
 
+  async modify({ commit }, user) {
+    return await AuthService.modifyUser(user)
+  },
+
   async login({ commit, dispatch }, user) {
     const data = await AuthService.loginUser(user)
     if (data?.token !== '') {
