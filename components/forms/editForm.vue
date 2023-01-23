@@ -112,7 +112,7 @@ export default {
         this.dataForm.email &&
         this.dataForm.password
       ) {
-        this.registrarUsuario(this.dataForm)
+        this.modificarUsuario(this.dataForm)
         this.dataForm = {
           name: null,
           email: null,
@@ -124,7 +124,7 @@ export default {
         this.$emit('closeForm')
       }
     },
-    async registrarUsuario(user) {
+    async modificarUsuario(user) {
       try {
         await this.$store.dispatch('auth/modify', user)
         location.reload()
