@@ -111,7 +111,8 @@ export default {
   methods: {
     async getUsers() {
       try {
-        await this.$store.dispatch('users/getAllUsers')
+        // haz un login con postman y pilla el token y lo pones aquí abajo
+        await this.$store.dispatch('users/getAllUsers', 'tokenaqui')
       } catch (error) {
         console.log(error)
       }
