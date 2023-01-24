@@ -4,7 +4,7 @@
 
     <div class="flex">
       <menu-index class="w-1/5 pr-3" />
-      <Nuxt class="w-full bg-gray-200 block-shadow" />
+      <Nuxt class="w-full bg-gray-100 block-shadow" />
     </div>
   </div>
 </template>
