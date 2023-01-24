@@ -44,7 +44,13 @@
           >
             <td>{{ refound.id }}</td>
             <td>{{ refound.concepto }}</td>
-            <td>{{ refound.referencia }}</td>
+            <td>
+              <span
+                class="text-blue-500 cursor-pointer hover:underline"
+                @click="goToRefound(refound.id)"
+                >{{ refound.referencia }}</span
+              >
+            </td>
             <td>{{ refound.fecha }}</td>
             <td>{{ refound.total }} €</td>
             <td>{{ refound.estado }}</td>
@@ -117,6 +123,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    goToRefound(id) {
+      this.$router.push('/devoluciones/' + parseInt(id))
+    },
   },
   // computed: {
   //   ...mapGetters({

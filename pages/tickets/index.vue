@@ -39,7 +39,13 @@
           <tr v-for="(ticket, index) in tickets" :key="index" class="border-b">
             <td>{{ ticket.usuarioEncoder }}</td>
             <td>{{ ticket.administradorEncoder }}</td>
-            <td>{{ ticket.referenciaPago }}</td>
+            <td>
+              <span
+                class="text-blue-500 cursor-pointer hover:underline"
+                @click="goToTicket(ticket.referenciaPago)"
+                >{{ ticket.referenciaPago }}</span
+              >
+            </td>
             <td>{{ ticket.asunto }}</td>
             <td>{{ ticket.status }}</td>
           </tr>
@@ -106,6 +112,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    goToTicket(referencia) {
+      this.$router.push('/tickets/' + parseInt(referencia))
+    },
   },
   // computed: {
   //   ...mapGetters({

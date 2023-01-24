@@ -40,7 +40,13 @@
           <tr v-for="(pay, index) in payments" :key="index" class="border-b">
             <td>{{ pay.id }}</td>
             <td>{{ pay.concepto }}</td>
-            <td>{{ pay.referencia }}</td>
+            <td>
+              <span
+                class="text-blue-500 cursor-pointer hover:underline"
+                @click="goToPayment(pay.id)"
+                >{{ pay.referencia }}</span
+              >
+            </td>
             <td>{{ pay.fecha }}</td>
             <td>{{ pay.total }} €</td>
             <td>{{ pay.estado }}</td>
@@ -113,6 +119,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    goToPayment(id) {
+      this.$router.push('/pagos/' + parseInt(id))
+    },
   },
   // computed: {
   //   ...mapGetters({

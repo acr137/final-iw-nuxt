@@ -11,13 +11,13 @@
         :width="520"
         :height="500"
         :lottie-name="'graphics'"
-        class="mr-4 bg-white rounded-lg"
+        class="mr-4 bg-white rounded-xl"
       />
       <lottie-charger
         :width="520"
         :height="500"
         :lottie-name="'diagram'"
-        class="ml-4 bg-white rounded-lg"
+        class="ml-4 bg-white rounded-xl"
       />
     </div>
   </div>

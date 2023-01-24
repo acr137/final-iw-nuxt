@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between mx-2 mb-4">
       <div class="flex items-center">
         <svg-icon name="users" class="mr-3 w-9 h-9" />
-        <h1 class="text-3xl font-bold font-oswald">Mi Cuenta</h1>
+        <h1 class="text-3xl font-bold font-oswald">Usuario: {{ user.id }}</h1>
       </div>
     </div>
 

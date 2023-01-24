@@ -53,13 +53,7 @@
         </button>
       </div>
       <div class="text-lg text-center text-blue-500 cursor-pointer">
-        <p
-          class="mb-16 hover:underline hover:text-blue-700"
-          @click="openRegisterModal"
-        >
-          ¿No estás registrado? Hazlo aquí
-        </p>
-        <p class="hover:underline hover:text-blue-700">
+        <p class="mt-20 hover:underline hover:text-blue-700">
           ¿Has olvidado tu contraseña?
         </p>
       </div>

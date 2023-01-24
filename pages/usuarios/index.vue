@@ -38,7 +38,13 @@
         <tbody class="text-center">
           <tr v-for="(user, index) in users" :key="index" class="border-b">
             <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
+            <td>
+              <span
+                class="text-blue-500 cursor-pointer hover:underline"
+                @click="goToUser(user.id)"
+                >{{ user.nombre }}</span
+              >
+            </td>
             <td>{{ user.email }}</td>
             <td>{{ user.nombreEmpresa }}</td>
             <td>{{ user.tipoUsuario }}</td>
@@ -64,7 +70,6 @@ export default {
     return {
       search: '',
       isLogin: true,
-      users: [],
       panelData: [
         {
           label: 'Total',
@@ -80,24 +85,24 @@ export default {
         },
       ],
 
-      usersMock: [
+      users: [
         {
           id: 1,
-          name: 'Alejandro Company',
+          nombre: 'Alejandro Company',
           email: 'alerinua@gmail.com',
           nombreEmpresa: 'Alejandro S.L',
           tipoUsuario: 'normal',
         },
         {
           id: 1,
-          name: 'Alejandro Company',
+          nombre: 'Alejandro Company',
           email: 'alerinua@gmail.com',
           nombreEmpresa: 'Alejandro S.L',
           tipoUsuario: 'normal',
         },
         {
           id: 1,
-          name: 'Alejandro Company',
+          nombre: 'Alejandro Company',
           email: 'alerinua@gmail.com',
           nombreEmpresa: 'Alejandro S.L',
           tipoUsuario: 'normal',
@@ -105,17 +110,20 @@ export default {
       ],
     }
   },
-  async created() {
-    await this.getUsers()
-  },
+  // async created() {
+  //   await this.getUsers()
+  // },
   methods: {
-    async getUsers() {
-      try {
-        // haz un login con postman y pilla el token y lo pones aquí abajo
-        await this.$store.dispatch('users/getAllUsers', 'tokenaqui')
-      } catch (error) {
-        console.log(error)
-      }
+    // async getUsers() {
+    //   try {
+    //     // haz un login con postman y pilla el token y lo pones aquí abajo
+    //     await this.$store.dispatch('users/getAllUsers', 'tokenaqui')
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // },
+    goToUser(id) {
+      this.$router.push('/usuarios/' + parseInt(id))
     },
   },
   // computed: {

@@ -2,7 +2,7 @@
   <div class="p-10">
     <div class="flex items-center mx-1.5 mb-5">
       <h1 class="mr-2 text-4xl font-bold text-gray-800 font-oswald">
-        Editar mis datos
+        Editar usuario
       </h1>
     </div>
 
@@ -59,9 +59,7 @@
       </div>
       <div class="px-1.5">
         <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center">
-          
-          </div>
+          <div class="flex items-center"></div>
           <p>
             <button
               type="submit"
