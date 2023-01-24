@@ -27,12 +27,17 @@ export const actions = {
   },
 
   async login({ commit, dispatch }, user) {
-    const data = await AuthService.loginUser(user)
-    if (data?.token !== '') {
-      dispatch('setAccessToken', data.token)
-      commit('setUser', data.user)
+    const token = await AuthService.loginUser(user)
+    if (token !== '') {
+      const date = new Date()
+      date.setDate(date.getDate() + 30)
+      this.$cookies.set('auth', token, {
+        expires: date,
+        path: '/',
+      })
+      commit('setAccessToken', token)
     }
-    return data
+    return token
   },
 
   async getUserToken({ commit }, idUsuario) {

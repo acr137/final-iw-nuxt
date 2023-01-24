@@ -6,12 +6,19 @@
     <h2 class="text-2xl font-bold text-center font-oswald">
       ¡Inicia sesión para comenzar a navegar!
     </h2>
-    <hr class="mx-10 mt-4" />
-    <div class="flex items-center">
-      <lottie-charger :width="300" :height="300" :lottie-name="'graphics'">
-      </lottie-charger>
-      <lottie-charger :width="300" :height="300" :lottie-name="'diagram'">
-      </lottie-charger>
+    <div class="flex items-center justify-center w-full mt-4">
+      <lottie-charger
+        :width="520"
+        :height="500"
+        :lottie-name="'graphics'"
+        class="mr-4 bg-white rounded-lg"
+      />
+      <lottie-charger
+        :width="520"
+        :height="500"
+        :lottie-name="'diagram'"
+        class="ml-4 bg-white rounded-lg"
+      />
     </div>
   </div>
 </template>

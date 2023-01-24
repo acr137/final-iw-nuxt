@@ -9,7 +9,7 @@ class UserService {
 
     try {
       const response = await axios.get(url, { params })
-      return response
+      console.log(response)
     } catch (error) {
       console.log(error)
     }
