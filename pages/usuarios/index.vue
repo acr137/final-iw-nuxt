@@ -64,6 +64,7 @@ export default {
     return {
       search: '',
       isLogin: true,
+      users: [],
       panelData: [
         {
           label: 'Total',
@@ -79,7 +80,7 @@ export default {
         },
       ],
 
-      users: [
+      usersMock: [
         {
           id: 1,
           name: 'Alejandro Company',
@@ -103,6 +104,18 @@ export default {
         },
       ],
     }
+  },
+  async created() {
+    await this.getUsers()
+  },
+  methods: {
+    async getUsers() {
+      try {
+        await this.$store.dispatch('users/getAllUsers')
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
   // computed: {
   //   ...mapGetters({

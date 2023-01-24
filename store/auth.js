@@ -26,14 +26,6 @@ export const actions = {
     commit('deleteAccessToken')
   },
 
-  async register({ commit }, user) {
-    return await AuthService.registerUser(user)
-  },
-
-  async modify({ commit }, user) {
-    return await AuthService.modifyUser(user)
-  },
-
   async login({ commit, dispatch }, user) {
     const data = await AuthService.loginUser(user)
     if (data?.token !== '') {
@@ -41,6 +33,10 @@ export const actions = {
       commit('setUser', data.user)
     }
     return data
+  },
+
+  async getUserToken({ commit }, idUsuario) {
+    return await AuthService.getUserToken(idUsuario)
   },
 }
 

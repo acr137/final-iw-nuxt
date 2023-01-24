@@ -1,32 +1,28 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8000/'
+const API_URL = process.env.API_URL
 
 class AuthService {
-  async registerUser(user) {
-    try {
-      const response = await axios.post(API_URL + 'users', user)
-      return response.data
-    } catch (error) {
-      this.$log.error(error)
-    }
-  }
-
-  async modifyUser(user) {
-    try {
-      const response = await axios.put(API_URL + 'users', user)
-      return response.data
-    } catch (error) {
-      this.$log.error(error)
-    }
-  }
-
   async loginUser(user) {
+    const url = API_URL + 'tpvv/login'
+
     try {
-      const response = await axios.post(API_URL + 'login', user)
+      const response = await axios.post(url, user)
       return response.data
     } catch (error) {
-      this.$log.error(error)
+      console.log(error)
+    }
+  }
+
+  async getUserToken(idUsuario) {
+    const url = API_URL + 'tpvv/token'
+    const params = { idUsuario }
+
+    try {
+      const response = await axios.post(url, { params })
+      return response.data
+    } catch (error) {
+      console.log(error)
     }
   }
 }

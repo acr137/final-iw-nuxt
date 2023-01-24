@@ -14,6 +14,12 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  env: {
+    // BaseUrl from API
+    API_URL:
+      'https://4a1a-2a02-2b60-1-1f8-e12e-5106-c8ec-e0a0.eu.ngrok.io/lac56-alu/TPVV/1.0.0/',
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/main.css'],
 
