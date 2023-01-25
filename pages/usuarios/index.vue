@@ -23,7 +23,12 @@
 
     <div class="mx-2 bg-white rounded-lg h-108 labelShadow">
       <div class="flex justify-end mb-1">
-        <search-input class="mt-3 mb-1 mr-2"></search-input>
+        <search-input
+          type="text"
+          :value="search"
+          class="mt-3 mb-1 mr-2"
+          @input="setInput"
+        ></search-input>
       </div>
       <table class="w-full">
         <thead class="bg-gray-200 border border-gray-300 shadow-md">
@@ -36,7 +41,7 @@
           </tr>
         </thead>
         <tbody class="text-center">
-          <tr v-for="(user, index) in users" :key="index" class="border-b">
+          <tr v-for="(user, index) in searches" :key="index" class="border-b">
             <td>{{ user.id }}</td>
             <td>
               <span
@@ -56,7 +61,7 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import CustomButton from '@/components/button/CustomButton.vue'
 import SearchInput from '@/components/search/searchInput.vue'
 
@@ -88,8 +93,15 @@ export default {
       users: [
         {
           id: 1,
+          nombre: 'Juan Company',
+          email: 'juan@gmail.com',
+          nombreEmpresa: 'Alejandro S.L',
+          tipoUsuario: 'normal',
+        },
+        {
+          id: 1,
           nombre: 'Alejandro Company',
-          email: 'alerinua@gmail.com',
+          email: 'pepe@gmail.com',
           nombreEmpresa: 'Alejandro S.L',
           tipoUsuario: 'normal',
         },
@@ -98,14 +110,7 @@ export default {
           nombre: 'Alejandro Company',
           email: 'alerinua@gmail.com',
           nombreEmpresa: 'Alejandro S.L',
-          tipoUsuario: 'normal',
-        },
-        {
-          id: 1,
-          nombre: 'Alejandro Company',
-          email: 'alerinua@gmail.com',
-          nombreEmpresa: 'Alejandro S.L',
-          tipoUsuario: 'normal',
+          tipoUsuario: 'admin',
         },
       ],
     }
@@ -113,24 +118,43 @@ export default {
   // async created() {
   //   await this.getUsers()
   // },
+  computed: {
+    ...mapGetters({
+      token: 'auth/getToken',
+    }),
+    searches() {
+      if (this.users) {
+        return this.users.filter((user) => {
+          return (
+            user.nombre.toLowerCase().includes(this.search.toLowerCase()) ||
+            user.email.toLowerCase().includes(this.search.toLowerCase()) ||
+            user.nombreEmpresa
+              .toLowerCase()
+              .includes(this.search.toLowerCase()) ||
+            user.tipoUsuario.toLowerCase().includes(this.search.toLowerCase())
+          )
+        })
+      } else {
+        return {}
+      }
+    },
+  },
+
   methods: {
-    // async getUsers() {
-    //   try {
-    //     // haz un login con postman y pilla el token y lo pones aquí abajo
-    //     await this.$store.dispatch('users/getAllUsers', 'tokenaqui')
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // },
+    async getUsers() {
+      try {
+        await this.$store.dispatch('users/getAllUsers', this.token)
+      } catch (error) {
+        console.log(error)
+      }
+    },
     goToUser(id) {
       this.$router.push('/usuarios/' + parseInt(id))
     },
+    setInput(inputValue) {
+      this.search = inputValue
+    },
   },
-  // computed: {
-  //   ...mapGetters({
-  //     isLogin: 'auth/isLogin',
-  //   }),
-  // },
 }
 </script>
 
