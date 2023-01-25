@@ -79,6 +79,7 @@ import { mapGetters } from 'vuex'
 import CustomButton from '@/components/button/CustomButton.vue'
 import SearchInput from '@/components/search/searchInput.vue'
 import TicketForm from '@/components/forms/ticketForm.vue'
+import ModalBase from '@/components/modal/ModalBase.vue'
 
 export default {
   name: 'TicketsPanel',
@@ -86,6 +87,7 @@ export default {
     CustomButton,
     SearchInput,
     TicketForm,
+    ModalBase,
   },
   data() {
     return {

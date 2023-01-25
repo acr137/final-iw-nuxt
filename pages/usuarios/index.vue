@@ -9,6 +9,7 @@
         v-if="isLogin"
         style-button="bg-yellowIw hover:bg-yellowIwHover px-3 py-2 text-white rounded-lg font-bold"
         text="Nuevo usuario"
+        @click="toggleCreateUserModal"
       ></custom-button>
     </div>
 
@@ -57,6 +58,18 @@
         </tbody>
       </table>
     </div>
+    <modal-base
+      :open="showCreateUserModal"
+      :has-close-icon="true"
+      @closedModal="toggleCreateUserModal"
+    >
+      <template #mainContent>
+        <user-form
+          @crearUsuario="crearUsuario"
+          @closeForm="toggleCreateUserModal"
+        />
+      </template>
+    </modal-base>
   </div>
 </template>
 
@@ -64,15 +77,20 @@
 import { mapGetters } from 'vuex'
 import CustomButton from '@/components/button/CustomButton.vue'
 import SearchInput from '@/components/search/searchInput.vue'
+import UserForm from '@/components/forms/userForm.vue'
+import ModalBase from '@/components/modal/ModalBase.vue'
 
 export default {
   name: 'UsersPanel',
   components: {
     CustomButton,
     SearchInput,
+    UserForm,
+    ModalBase,
   },
   data() {
     return {
+      showCreateUserModal: false,
       search: '',
       isLogin: true,
       panelData: [
@@ -89,7 +107,6 @@ export default {
           value: 60,
         },
       ],
-
       users: [
         {
           id: 1,
@@ -141,6 +158,9 @@ export default {
   },
 
   methods: {
+    toggleCreateUserModal() {
+      this.showCreateUserModal = !this.showCreateUserModal
+    },
     async getUsers() {
       try {
         await this.$store.dispatch('users/getAllUsers', this.token)

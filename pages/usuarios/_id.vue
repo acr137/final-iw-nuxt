@@ -5,6 +5,11 @@
         <svg-icon name="users" class="mr-3 w-9 h-9" />
         <h1 class="text-3xl font-bold font-oswald">Usuario: {{ user.id }}</h1>
       </div>
+      <custom-button
+        style-button="bg-red-400 hover:bg-red-500 px-3 py-2 text-white rounded-lg font-bold"
+        text="Eliminar usuario"
+        @click="toggleDeleteModal"
+      ></custom-button>
     </div>
 
     <div class="flex items-center">
@@ -36,21 +41,41 @@
           </p>
         </div>
       </div>
-      <div class="w-1/2 mx-2 bg-white rounded-xl"><edit-user /></div>
+      <div class="w-1/2 mx-2 bg-white rounded-xl">
+        <edit-form @editUser="editUser" />
+      </div>
     </div>
+
+    <modal-base
+      :open="showDeleteModal"
+      :has-close-icon="true"
+      @closedModal="toggleDeleteModal"
+    >
+      <template #mainContent>
+        <delete-form
+          @delete="deleteUser"
+          @toggleDeleteModal="toggleDeleteModal"
+        />
+      </template>
+    </modal-base>
   </div>
 </template>
 
 <script>
-import EditUser from '@/components/forms/editForm.vue'
+import EditForm from '@/components/forms/editForm.vue'
+import CustomButton from '~/components/button/CustomButton.vue'
+import DeleteForm from '@/components/forms/deleteForm.vue'
 
 export default {
   name: 'UserDetails',
   components: {
-    EditUser,
+    EditForm,
+    CustomButton,
+    DeleteForm,
   },
   data() {
     return {
+      showDeleteModal: false,
       user: {
         id: 1,
         nombre: 'Alejandro Company',
@@ -66,6 +91,33 @@ export default {
       return (
         '*'.repeat(this.user.password.length - 2) + this.user.password.slice(-2)
       )
+    },
+  },
+  methods: {
+    toggleDeleteModal() {
+      this.showDeleteModal = !this.showDeleteModal
+    },
+    async deleteUser() {
+      try {
+        await this.$store.dispatch('users/deleteUser', this.token, this.user.id)
+        this.toggleDeleteModal()
+        this.$router.push('/usuarios')
+      } catch (error) {
+        this.toggleDeleteModal()
+        console.log(error)
+      }
+    },
+    async editUser(data) {
+      try {
+        await this.$store.dispatch(
+          'users/editUser',
+          this.token,
+          this.user.id,
+          data
+        )
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }

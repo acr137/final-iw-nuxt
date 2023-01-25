@@ -18,7 +18,7 @@
         <p class="font-bold uppercase">Nombre</p>
         <input
           id="name"
-          v-model="dataForm.name"
+          v-model="dataForm.nombre"
           class="w-full p-2 bg-gray-200 border border-gray-300 rounded"
           type="text"
           name="name"
@@ -51,7 +51,7 @@
         <p class="font-bold uppercase">Mi Empresa</p>
         <input
           id="company"
-          v-model="dataForm.company"
+          v-model="dataForm.nombreEmpresa"
           class="w-full p-2 bg-gray-200 border border-gray-300 rounded"
           type="text"
           name="company"
@@ -63,7 +63,7 @@
           <p>
             <button
               type="submit"
-              class="px-4 py-2 text-lg font-bold text-gray-800 rounded cursor-pointer hover:shadow-md bg-yellowIw hover:bg-green-700"
+              class="px-4 py-2 text-lg font-bold text-gray-800 rounded cursor-pointer hover:shadow-md bg-yellowIw hover:bg-yellowIwHover"
             >
               Guardar
             </button>
@@ -80,11 +80,10 @@ export default {
   data() {
     return {
       dataForm: {
-        name: null,
+        nombre: null,
         email: null,
         password: null,
-        company: null,
-        admin: false,
+        nombreEmpresa: null,
       },
       errors: [],
     }
@@ -92,7 +91,7 @@ export default {
   methods: {
     checkForm() {
       this.errors = []
-      if (!this.dataForm.name) {
+      if (!this.dataForm.nombre) {
         this.errors.push('El nombre es obligatorio.')
       }
       if (!this.dataForm.email) {
@@ -101,45 +100,25 @@ export default {
       if (!this.dataForm.password) {
         this.errors.push('La contraseña es obligatoria.')
       }
-      if (!this.dataForm.company) {
+      if (!this.dataForm.nombreEmpresa) {
         this.errors.push('La empresa es obligatoria.')
       }
       if (
-        this.dataForm.name &&
-        this.dataForm.company &&
+        this.dataForm.nombre &&
+        this.dataForm.nombreEmpresa &&
         this.dataForm.email &&
         this.dataForm.password
       ) {
-        this.modificarUsuario(this.dataForm)
+        this.$emit('editUser', this.dataForm)
         this.dataForm = {
-          name: null,
+          nombre: null,
           email: null,
           password: null,
-          company: null,
-          admin: false,
+          nombreEmpresa: null,
         }
         this.errors = []
-        this.$emit('closeForm')
-      }
-    },
-    async modificarUsuario(user) {
-      try {
-        await this.$store.dispatch('auth/modify', user)
-        location.reload()
-      } catch (error) {
-        this.$log.error(error)
       }
     },
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.bg-yellowIw {
-  background-color: #fdd835;
-}
-
-.bg-yellowIw:hover {
-  background-color: #d8b727;
-}
-</style>

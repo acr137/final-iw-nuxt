@@ -1,8 +1,8 @@
 <template>
   <div class="p-10">
     <div class="flex items-center mx-1.5 mb-5">
-      <h1 class="mr-2 text-4xl font-bold text-gray-800 uppercase font-oswald">
-        ¡Regístrate!
+      <h1 class="mr-2 text-4xl font-bold text-gray-800 font-oswald">
+        Crear usuario
       </h1>
       <lottie-charger
         :width="80"
@@ -23,7 +23,7 @@
         <p class="font-bold uppercase">Nombre</p>
         <input
           id="name"
-          v-model="dataForm.name"
+          v-model="dataForm.nombre"
           class="w-full p-2 bg-gray-200 border border-gray-300 rounded"
           type="text"
           name="name"
@@ -56,7 +56,7 @@
         <p class="font-bold uppercase">Empresa</p>
         <input
           id="company"
-          v-model="dataForm.company"
+          v-model="dataForm.nombreEmpresa"
           class="w-full p-2 bg-gray-200 border border-gray-300 rounded"
           type="text"
           name="company"
@@ -82,7 +82,7 @@
               type="submit"
               class="px-4 py-2 text-lg font-bold text-gray-800 rounded cursor-pointer hover:shadow-md bg-yellowIw hover:bg-yellowIwHover"
             >
-              Registrarse
+              Crear
             </button>
           </p>
         </div>
@@ -95,17 +95,17 @@
 import LottieCharger from '~/components/lottie/lottieCharger.vue'
 
 export default {
-  name: 'RegisterForm',
+  name: 'UserForm',
   components: {
     LottieCharger,
   },
   data() {
     return {
       dataForm: {
-        name: null,
+        nombre: null,
         email: null,
         password: null,
-        company: null,
+        nombreEmpresa: null,
         admin: false,
       },
       errors: [],
@@ -114,7 +114,7 @@ export default {
   methods: {
     checkForm() {
       this.errors = []
-      if (!this.dataForm.name) {
+      if (!this.dataForm.nombre) {
         this.errors.push('El nombre es obligatorio.')
       }
       if (!this.dataForm.email) {
@@ -123,33 +123,25 @@ export default {
       if (!this.dataForm.password) {
         this.errors.push('La contraseña es obligatoria.')
       }
-      if (!this.dataForm.company) {
+      if (!this.dataForm.nombreEmpresa) {
         this.errors.push('La empresa es obligatoria.')
       }
       if (
-        this.dataForm.name &&
-        this.dataForm.company &&
+        this.dataForm.nombre &&
+        this.dataForm.nombreEmpresa &&
         this.dataForm.email &&
         this.dataForm.password
       ) {
-        this.registrarUsuario(this.dataForm)
+        this.$emit('crearUsuario', this.dataForm)
         this.dataForm = {
-          name: null,
+          nombre: null,
           email: null,
           password: null,
-          company: null,
+          nombreEmpresa: null,
           admin: false,
         }
         this.errors = []
         this.$emit('closeForm')
-      }
-    },
-    async registrarUsuario(user) {
-      try {
-        await this.$store.dispatch('auth/register', user)
-        location.reload()
-      } catch (error) {
-        this.$log.error(error)
       }
     },
   },

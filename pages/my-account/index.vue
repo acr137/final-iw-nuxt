@@ -36,18 +36,20 @@
           </p>
         </div>
       </div>
-      <div class="w-1/2 mx-2 bg-white rounded-xl"><edit-user /></div>
+      <div class="w-1/2 mx-2 bg-white rounded-xl">
+        <edit-form @editUser="editUser" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import EditUser from '@/components/forms/editForm.vue'
+import EditForm from '@/components/forms/editForm.vue'
 
 export default {
   name: 'UserDetails',
   components: {
-    EditUser,
+    EditForm,
   },
   data() {
     return {
@@ -66,6 +68,20 @@ export default {
       return (
         '*'.repeat(this.user.password.length - 2) + this.user.password.slice(-2)
       )
+    },
+  },
+  methods: {
+    async editUser(data) {
+      try {
+        await this.$store.dispatch(
+          'users/editUser',
+          this.token,
+          this.user.id,
+          data
+        )
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }
