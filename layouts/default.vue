@@ -3,13 +3,14 @@
     <the-header />
 
     <div class="flex">
-      <menu-index class="w-1/5 pr-3" />
-      <Nuxt class="w-full bg-gray-100 block-shadow" />
+      <menu-index v-if="isLogin" class="w-1/5 pr-3" />
+      <Nuxt class="w-full bg-gray-100" :class="{ 'block-shadow': isLogin }" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import TheHeader from '@/components/header/header.vue'
 import MenuIndex from '@/components/menu/menu.vue'
 
@@ -18,6 +19,11 @@ export default {
   components: {
     TheHeader,
     MenuIndex,
+  },
+  computed: {
+    ...mapGetters({
+      isLogin: 'auth/isLogin',
+    }),
   },
 }
 </script>
