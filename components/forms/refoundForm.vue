@@ -1,13 +1,13 @@
 <template>
-  <div class="p-10">
-    <div class="flex items-center mx-1.5 mb-5">
+  <div class="px-5 pb-5">
+    <div class="flex items-center mx-1.5 mb-1">
       <h1 class="mr-2 text-4xl font-bold text-gray-800 uppercase font-oswald">
-        Crear pago
+        Crear devolucion
       </h1>
       <lottie-charger
-        :width="150"
-        :height="150"
-        :lottie-name="'pago'"
+        :width="200"
+        :height="200"
+        :lottie-name="'refound'"
       ></lottie-charger>
     </div>
 
@@ -140,7 +140,7 @@ export default {
         this.dataForm.estado &&
         this.dataForm.detallesEstado
       ) {
-        this.$emit('crearPago', this.dataForm)
+        this.$emit('crearDevolucion', this.dataForm)
         this.dataForm = {
           concepto: null,
           total: null,

@@ -8,7 +8,8 @@
       <custom-button
         v-if="isLogin"
         style-button="bg-yellowIw hover:bg-yellowIwHover px-3 py-2 text-white rounded-lg font-bold"
-        text="Gestionar devolución"
+        text="Crear devolución"
+        @click="toggleCreateRefoundModal"
       ></custom-button>
     </div>
 
@@ -23,7 +24,12 @@
 
     <div class="mx-2 bg-white rounded-lg h-108 labelShadow">
       <div class="flex justify-end mb-1">
-        <search-input class="mt-3 mb-1 mr-2"></search-input>
+        <search-input
+          type="text"
+          :value="search"
+          class="mt-3 mb-1 mr-2"
+          @input="setInput"
+        />
       </div>
       <table class="w-full">
         <thead class="bg-gray-200 border border-gray-300 shadow-md">
@@ -32,13 +38,12 @@
             <th>Concepto</th>
             <th>Referencia</th>
             <th>Fecha</th>
-            <th>Total</th>
             <th>Estado</th>
           </tr>
         </thead>
         <tbody class="text-center">
           <tr
-            v-for="(refound, index) in refounds"
+            v-for="(refound, index) in searches"
             :key="index"
             class="border-b"
           >
@@ -52,28 +57,44 @@
               >
             </td>
             <td>{{ refound.fecha }}</td>
-            <td>{{ refound.total }} €</td>
             <td>{{ refound.estado }}</td>
           </tr>
         </tbody>
       </table>
     </div>
+    <modal-base
+      :open="showCreateRefoundModal"
+      :has-close-icon="true"
+      @closedModal="toggleCreateRefoundModal"
+    >
+      <template #mainContent>
+        <refound-form
+          @crearDevolucion="crearDevolucion"
+          @closeForm="toggleCreateRefoundModal"
+        />
+      </template>
+    </modal-base>
   </div>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import CustomButton from '@/components/button/CustomButton.vue'
 import SearchInput from '@/components/search/searchInput.vue'
+import ModalBase from '@/components/modal/ModalBase.vue'
+import RefoundForm from '@/components/forms/refoundForm.vue'
 
 export default {
   name: 'RefoundsPanel',
   components: {
     CustomButton,
     SearchInput,
+    ModalBase,
+    RefoundForm,
   },
   data() {
     return {
+      showCreateRefoundModal: false,
       search: '',
       isLogin: true,
       panelData: [
@@ -95,17 +116,17 @@ export default {
           id: 1,
           devolucionId: 22,
           total: 120.3,
-          concepto: 'Compra memoria Ram',
-          referencia: '515adfas54',
+          concepto: 'Compra memoria rom',
+          referencia: 'asdasd',
           fecha: '09-12-2022 09:55:23',
-          estado: 'DENEGADO',
-          detallesEstado: 'TARJETA DENEGADA',
+          estado: 'FINALIZADO',
+          detallesEstado: 'TARJETA APROBADA',
         },
         {
           id: 1,
           devolucionId: 22,
           total: 120.3,
-          concepto: 'Compra memoria Ram',
+          concepto: 'Compra disco duro',
           referencia: '515adfas54',
           fecha: '09-12-2022 09:55:23',
           estado: 'DENEGADO',
@@ -124,16 +145,67 @@ export default {
       ],
     }
   },
+  // async created() {
+  //   await this.getPayments()
+  // },
+  computed: {
+    ...mapGetters({
+      token: 'auth/getToken',
+    }),
+    searches() {
+      if (this.refounds) {
+        return this.refounds.filter((refound) => {
+          return (
+            refound.concepto
+              .toLowerCase()
+              .includes(this.search.toLowerCase()) ||
+            refound.referencia
+              .toLowerCase()
+              .includes(this.search.toLowerCase()) ||
+            refound.estado.toLowerCase().includes(this.search.toLowerCase())
+          )
+        })
+      } else {
+        return {}
+      }
+    },
+  },
+  // async created() {
+  //   await this.getRefounds()
+  // },
   methods: {
     goToRefound(id) {
       this.$router.push('/devoluciones/' + parseInt(id))
     },
+    toggleCreateRefoundModal() {
+      this.showCreateRefoundModal = !this.showCreateRefoundModal
+    },
+    setInput(inputValue) {
+      this.search = inputValue
+    },
+    async getRefounds() {
+      try {
+        this.refounds = await this.$store.dispatch(
+          'refounds/getAllRefounds',
+          this.token
+        )
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async crearDevolucion(devolucion) {
+      try {
+        await this.$store.dispatch(
+          'refounds/makeRefound',
+          this.token,
+          devolucion
+        )
+        this.$router.push('/devoluciones')
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
-  // computed: {
-  //   ...mapGetters({
-  //     isLogin: 'auth/isLogin',
-  //   }),
-  // },
 }
 </script>
 
