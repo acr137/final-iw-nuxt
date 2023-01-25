@@ -174,6 +174,14 @@ export default {
     setInput(inputValue) {
       this.search = inputValue
     },
+    async crearUsuario(user) {
+      try {
+        await this.$store.dispatch('users/crearUsuario', this.token, user)
+        this.$router.push('/usuarios')
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
 }
 </script>
