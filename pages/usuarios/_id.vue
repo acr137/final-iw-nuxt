@@ -93,6 +93,13 @@ export default {
       )
     },
   },
+  // async created() {
+  //   this.user = await this.$store.dispatch(
+  //     'users/getUser',
+  //     this.token
+  //     this.$route.params.id
+  //   )
+  // },
   methods: {
     toggleDeleteModal() {
       this.showDeleteModal = !this.showDeleteModal

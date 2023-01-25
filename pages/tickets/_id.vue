@@ -4,6 +4,11 @@
       <div class="flex items-center">
         <svg-icon name="ticket" class="mr-3 w-9 h-9" />
         <h1 class="text-3xl font-bold font-oswald">Ticket: {{ ticket.id }}</h1>
+        <custom-button
+          style-button="bg-blue-400 hover:bg-blue-500 px-3 py-2 text-white rounded-lg font-bold ml-4"
+          text="Volver"
+          @click="returnToTicketsList"
+        ></custom-button>
       </div>
     </div>
 
@@ -28,7 +33,7 @@
             {{ ticket.administradorEncoder }}
           </p>
           <p
-            class="px-4 py-1 mt-10 font-bold text-white uppercase bg-blue-400 w-fit rounded-xl"
+            class="px-4 py-1 mt-10 font-bold text-white uppercase bg-yellowIw w-fit rounded-xl"
           >
             {{ ticket.status }}
           </p>
@@ -152,7 +157,17 @@ export default {
       token: 'auth/getToken',
     }),
   },
+  // async created() {
+  //   this.ticket = await this.$store.dispatch(
+  //     'tickets/getTicket',
+  //     this.token
+  //     this.$route.params.id
+  //   )
+  // },
   methods: {
+    returnToTicketsList() {
+      this.$router.push('/tickets')
+    },
     toggleDeleteModal() {
       this.showDeleteModal = !this.showDeleteModal
     },

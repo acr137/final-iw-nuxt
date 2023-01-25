@@ -1,17 +1,17 @@
 <template>
   <div class="px-10 py-6 h-186">
-    <div class="flex items-center justify-between mx-2 mb-4">
+    <div class="mx-2 mb-10">
       <div class="flex items-center">
         <svg-icon name="pay" class="mr-3 w-9 h-9" />
         <h1 class="text-3xl font-bold font-oswald">
           Pago: {{ pago.devolucionId }}
         </h1>
+        <custom-button
+          style-button="bg-blue-400 hover:bg-blue-500 px-3 py-2 text-white rounded-lg font-bold ml-4"
+          text="Volver"
+          @click="returnToPaymentsList"
+        ></custom-button>
       </div>
-      <custom-button
-        v-if="isLogin"
-        style-button="bg-yellowIw hover:bg-yellowIwHover px-3 py-2 text-white rounded-lg font-bold"
-        text="Gestionar pago"
-      ></custom-button>
     </div>
 
     <div class="flex items-center mx-2">
@@ -35,38 +35,20 @@
             <span class="font-bold">Fecha:</span> {{ pago.fecha }}
           </p>
           <p
-            class="px-4 py-1 mt-10 font-bold text-white uppercase bg-blue-400 w-fit rounded-xl"
+            class="px-4 py-1 mt-10 font-bold text-white uppercase bg-yellowIw w-fit rounded-xl"
           >
             {{ pago.estado }}
           </p>
         </div>
       </div>
-      <div class="w-1/2 ml-2 bg-white rounded-lg h-108">a</div>
-    </div>
-
-    <div class="flex items-center mx-2 mt-6">
-      <custom-button
-        text="Denegar"
-        style-button="bg-gray-400 hover:bg-gray-500 px-4 py-2 text-white rounded-md mr-2 font-bold"
-      >
-        <template #icon>
-          <svg-icon
-            name="x"
-            class="w-5 h-5 text-white fill-white stroke-white"
-          />
-        </template>
-      </custom-button>
-      <custom-button
-        text="Confirmar pago"
-        style-button="bg-yellowIw hover:bg-yellowIwHover px-4 py-2 text-white rounded-md font-bold"
-      >
-        <template #icon>
-          <svg-icon
-            name="right-arrow"
-            class="w-5 h-5 text-white fill-white stroke-white"
-          />
-        </template>
-      </custom-button>
+      <div class="w-1/2 ml-2 bg-white rounded-lg h-108">
+        <h1
+          class="mt-4 mb-20 text-3xl font-bold text-center underline font-oswald"
+        >
+          DETALLES
+        </h1>
+        <p class="mx-10 text-xl font-bold">{{ pago.detallesEstado }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -93,6 +75,18 @@ export default {
         detallesEstado: 'Pago efectuado correctamente',
       },
     }
+  },
+  // async created() {
+  //   this.pago = await this.$store.dispatch(
+  //     'payments/getPayment',
+  //     this.token
+  //     this.$route.params.id
+  //   )
+  // },
+  methods: {
+    returnToPaymentsList() {
+      this.$router.push('/pagos')
+    },
   },
 }
 </script>

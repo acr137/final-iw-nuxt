@@ -1,7 +1,7 @@
 <template>
   <div class="p-10">
     <div class="flex items-center mx-1.5 mb-5">
-      <h1 class="mr-2 text-4xl font-bold text-gray-800 font-oswald">
+      <h1 class="mr-2 text-4xl font-bold text-gray-800 uppercase font-oswald">
         Crear usuario
       </h1>
       <lottie-charger

@@ -29,7 +29,7 @@
           :value="search"
           class="mt-3 mb-1 mr-2"
           @input="setInput"
-        ></search-input>
+        />
       </div>
       <table class="w-full">
         <thead class="bg-gray-200 border border-gray-300 shadow-md">
@@ -163,7 +163,7 @@ export default {
     },
     async getUsers() {
       try {
-        await this.$store.dispatch('users/getAllUsers', this.token)
+        this.users = await this.$store.dispatch('users/getAllUsers', this.token)
       } catch (error) {
         console.log(error)
       }

@@ -48,7 +48,7 @@
             <td>
               <span
                 class="text-blue-500 cursor-pointer hover:underline"
-                @click="goToTicket(ticket.referenciaPago)"
+                @click="goToTicket(ticket.id)"
                 >{{ ticket.referenciaPago }}</span
               >
             </td>
@@ -168,8 +168,8 @@ export default {
     setInput(inputValue) {
       this.search = inputValue
     },
-    goToTicket(referencia) {
-      this.$router.push('/tickets/' + parseInt(referencia))
+    goToTicket(id) {
+      this.$router.push('/tickets/' + parseInt(id))
     },
     toggleCreateTicketModal() {
       this.showCreateTicketModal = !this.showCreateTicketModal
