@@ -38,7 +38,7 @@
           name="password"
         />
       </div>
-      <div class="px-1.5">
+      <div class="px-1.5 mb-20">
         <button
           type="submit"
           class="flex items-center w-full py-3 mb-3 text-lg font-bold text-white rounded cursor-pointer bg-yellowIw hover:bg-yellowIwHover"
@@ -51,11 +51,6 @@
             />
           </div>
         </button>
-      </div>
-      <div class="text-lg text-center text-blue-500 cursor-pointer">
-        <p class="mt-20 hover:underline hover:text-blue-700">
-          ¿Has olvidado tu contraseña?
-        </p>
       </div>
     </form>
   </div>

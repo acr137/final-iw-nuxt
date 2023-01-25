@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import EditForm from '@/components/forms/editForm.vue'
 
 export default {
@@ -51,19 +52,10 @@ export default {
   components: {
     EditForm,
   },
-  data() {
-    return {
-      user: {
-        id: 1,
-        nombre: 'Alejandro Company',
-        email: 'alerinua@gmail.com',
-        password: '223',
-        nombreEmpresa: 'Alejandro S.L',
-        tipoUsuario: 'normal',
-      },
-    }
-  },
   computed: {
+    ...mapGetters({
+      user: 'auth/getUser',
+    }),
     maskedPassword() {
       return (
         '*'.repeat(this.user.password.length - 2) + this.user.password.slice(-2)

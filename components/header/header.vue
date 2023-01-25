@@ -26,6 +26,14 @@
         /> </template
     ></custom-button>
 
+    <div v-else>
+      <nuxt-link to="/my-account">
+        <div class="p-4 bg-black rounded-full">
+          <svg-icon name="user" class="w-6 h-6 stroke-white" />
+        </div>
+      </nuxt-link>
+    </div>
+
     <modal-base
       :open="showLoginModal"
       :has-close-icon="true"
@@ -42,6 +50,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import LottieCharger from '@/components/lottie/lottieCharger.vue'
 import CustomButton from '@/components/button/CustomButton.vue'
 import LoginForm from '@/components/forms/loginForm.vue'
@@ -55,10 +64,14 @@ export default {
   },
   data() {
     return {
-      isLogin: false,
       showLoginModal: false,
       showRegisterModal: false,
     }
+  },
+  computed: {
+    ...mapGetters({
+      isLogin: 'auth/isLogin',
+    }),
   },
   methods: {
     toggleLoginModal() {
