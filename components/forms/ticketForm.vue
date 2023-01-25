@@ -26,7 +26,7 @@
           v-model="dataForm.usuarioEncoder"
           class="w-full p-2 bg-gray-200 border border-gray-300 rounded"
           type="text"
-          name="user"
+          name="email"
         />
       </div>
 
@@ -36,7 +36,7 @@
           id="admin"
           v-model="dataForm.administradorDecoder"
           class="w-full p-2 bg-gray-200 border border-gray-300 rounded"
-          type="text"
+          type="email"
           name="admin"
         />
       </div>

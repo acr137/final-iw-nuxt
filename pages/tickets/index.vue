@@ -9,6 +9,7 @@
         v-if="isLogin"
         style-button="bg-yellowIw hover:bg-yellowIwHover px-3 py-2 text-white rounded-lg font-bold"
         text="Crear ticket"
+        @click="toggleCreateTicketModal"
       ></custom-button>
     </div>
 
@@ -23,7 +24,12 @@
 
     <div class="mx-2 bg-white rounded-lg h-108 labelShadow">
       <div class="flex justify-end mb-1">
-        <search-input class="mt-3 mb-1 mr-2"></search-input>
+        <search-input
+          type="text"
+          :value="search"
+          class="mt-3 mb-1 mr-2"
+          @input="setInput"
+        ></search-input>
       </div>
       <table class="w-full">
         <thead class="bg-gray-200 border border-gray-300 shadow-md">
@@ -36,11 +42,7 @@
           </tr>
         </thead>
         <tbody class="text-center">
-          <tr
-            v-for="(ticket, index) in ticketsMock"
-            :key="index"
-            class="border-b"
-          >
+          <tr v-for="(ticket, index) in searches" :key="index" class="border-b">
             <td>{{ ticket.usuarioEncoder }}</td>
             <td>{{ ticket.administradorEncoder }}</td>
             <td>
@@ -104,12 +106,10 @@ export default {
           value: 60,
         },
       ],
-      tickets: [],
-
-      ticketsMock: [
+      tickets: [
         {
           id: 1,
-          usuarioEncoder: 'alejandro@gmail.com',
+          usuarioEncoder: 'juan@gmail.com',
           administradorEncoder: 'admin@gmail.com',
           referenciaPago: '56asdasd',
           asunto: 'Problema con la transacción',
@@ -117,11 +117,11 @@ export default {
         },
         {
           id: 1,
-          usuarioEncoder: 'alejandro@gmail.com',
+          usuarioEncoder: 'gabriel@gmail.com',
           administradorEncoder: 'admin@gmail.com',
           referenciaPago: '56asdasd',
           asunto: 'Problema con la transacción',
-          status: 'ESPERA',
+          status: 'EN MARCHA',
         },
         {
           id: 1,
@@ -138,11 +138,34 @@ export default {
     ...mapGetters({
       token: 'auth/getToken',
     }),
+    searches() {
+      if (this.tickets) {
+        return this.tickets.filter((ticket) => {
+          return (
+            ticket.usuarioEncoder
+              .toLowerCase()
+              .includes(this.search.toLowerCase()) ||
+            ticket.administradorEncoder
+              .toLowerCase()
+              .includes(this.search.toLowerCase()) ||
+            ticket.referenciaPago
+              .toLowerCase()
+              .includes(this.search.toLowerCase()) ||
+            ticket.status.toLowerCase().includes(this.search.toLowerCase())
+          )
+        })
+      } else {
+        return {}
+      }
+    },
   },
   // async created() {
   //   await this.getAllTickets()
   // },
   methods: {
+    setInput(inputValue) {
+      this.search = inputValue
+    },
     goToTicket(referencia) {
       this.$router.push('/tickets/' + parseInt(referencia))
     },
@@ -160,7 +183,7 @@ export default {
     async getAllTickets() {
       try {
         this.tickets = await this.$store.dispatch(
-          'users/getAllTickets',
+          'tickets/getAllTickets',
           this.token
         )
       } catch (error) {
