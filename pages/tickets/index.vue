@@ -36,7 +36,11 @@
           </tr>
         </thead>
         <tbody class="text-center">
-          <tr v-for="(ticket, index) in tickets" :key="index" class="border-b">
+          <tr
+            v-for="(ticket, index) in ticketsMock"
+            :key="index"
+            class="border-b"
+          >
             <td>{{ ticket.usuarioEncoder }}</td>
             <td>{{ ticket.administradorEncoder }}</td>
             <td>
@@ -52,22 +56,38 @@
         </tbody>
       </table>
     </div>
+
+    <modal-base
+      :open="showCreateTicketModal"
+      :has-close-icon="true"
+      @closedModal="toggleCreateTicketModal"
+    >
+      <template #mainContent>
+        <ticket-form
+          @crearTicket="crearTicket"
+          @closeForm="toggleCreateTicketModal"
+        />
+      </template>
+    </modal-base>
   </div>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import CustomButton from '@/components/button/CustomButton.vue'
 import SearchInput from '@/components/search/searchInput.vue'
+import TicketForm from '@/components/forms/ticketForm.vue'
 
 export default {
   name: 'TicketsPanel',
   components: {
     CustomButton,
     SearchInput,
+    TicketForm,
   },
   data() {
     return {
+      showCreateTicketModal: false,
       search: '',
       isLogin: true,
       panelData: [
@@ -84,8 +104,9 @@ export default {
           value: 60,
         },
       ],
+      tickets: [],
 
-      tickets: [
+      ticketsMock: [
         {
           id: 1,
           usuarioEncoder: 'alejandro@gmail.com',
@@ -113,16 +134,40 @@ export default {
       ],
     }
   },
+  computed: {
+    ...mapGetters({
+      token: 'auth/getToken',
+    }),
+  },
+  // async created() {
+  //   await this.getAllTickets()
+  // },
   methods: {
     goToTicket(referencia) {
       this.$router.push('/tickets/' + parseInt(referencia))
     },
+    toggleCreateTicketModal() {
+      this.showCreateTicketModal = !this.showCreateTicketModal
+    },
+    async crearTicket(ticket) {
+      try {
+        await this.$store.dispatch('tickets/crearTicket', this.token, ticket)
+        this.$router.push('/tickets')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getAllTickets() {
+      try {
+        this.tickets = await this.$store.dispatch(
+          'users/getAllTickets',
+          this.token
+        )
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
-  // computed: {
-  //   ...mapGetters({
-  //     isLogin: 'auth/isLogin',
-  //   }),
-  // },
 }
 </script>
 

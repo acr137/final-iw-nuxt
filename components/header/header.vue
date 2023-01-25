@@ -9,7 +9,9 @@
           :lottie-name="'hearthbeat'"
         />
       </div>
-      <h1 class="text-2xl font-bold bg-blue">TPV Virtual</h1>
+      <nuxt-link to="/"
+        ><h1 class="text-2xl font-bold bg-blue">TPV Virtual</h1></nuxt-link
+      >
     </div>
     <custom-button
       v-if="!isLogin"
@@ -36,16 +38,6 @@
         />
       </template>
     </modal-base>
-
-    <modal-base
-      :open="showRegisterModal"
-      :has-close-icon="true"
-      @closedModal="toggleRegisterModal"
-    >
-      <template #mainContent>
-        <register-form @closeForm="toggleRegisterModal"></register-form>
-      </template>
-    </modal-base>
   </div>
 </template>
 
@@ -53,7 +45,6 @@
 import LottieCharger from '@/components/lottie/lottieCharger.vue'
 import CustomButton from '@/components/button/CustomButton.vue'
 import LoginForm from '@/components/forms/loginForm.vue'
-import RegisterForm from '@/components/forms/registerForm.vue'
 
 export default {
   name: 'TheHeader',
@@ -61,7 +52,6 @@ export default {
     LottieCharger,
     CustomButton,
     LoginForm,
-    RegisterForm,
   },
   data() {
     return {

@@ -49,4 +49,7 @@ export const getters = {
   isLogin: (state) => {
     return !!state.accessToken
   },
+  getToken(state) {
+    return state.accessToken
+  },
 }

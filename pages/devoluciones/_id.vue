@@ -92,20 +92,6 @@ export default {
         estado: 'DEVOLUCION',
         detallesEstado: 'Tarjeta denegada',
       },
-      panelData: [
-        {
-          label: 'Cliente',
-          value: 'Eugenio Benit',
-        },
-        {
-          label: 'Teléfono de contacto',
-          value: '+34 653 234 764',
-        },
-        {
-          label: 'Email',
-          value: 'ebl29@alu.ua.es',
-        },
-      ],
     }
   },
 }
