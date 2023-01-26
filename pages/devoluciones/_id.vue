@@ -67,7 +67,7 @@ export default {
   data() {
     return {
       isLogin: true,
-      refound: {},
+      devolucion: {},
     }
   },
   computed: {
@@ -89,7 +89,10 @@ export default {
       }
 
       try {
-        this.refound = await this.$store.dispatch('refounds/getRefound', params)
+        this.devolucion = await this.$store.dispatch(
+          'refounds/getRefound',
+          params
+        )
       } catch (error) {
         console.log(error)
       }
