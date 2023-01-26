@@ -8,7 +8,7 @@ class TicketsService {
 
     try {
       const response = await axios.get(url, { params })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
@@ -19,7 +19,7 @@ class TicketsService {
 
     try {
       const response = await axios.get(url, { params })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
@@ -43,7 +43,7 @@ class TicketsService {
       const response = await axios.post(url, data.ticket, {
         params: { token: data.token },
       })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
@@ -56,7 +56,7 @@ class TicketsService {
       const response = await axios.post(url, data.rating, {
         params: { token: data.token, idTicket: data.idTicket },
       })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
@@ -80,7 +80,7 @@ class TicketsService {
       const response = await axios.post(url, data.message, {
         params: { token: data.token, idTicket: data.idTicket },
       })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
