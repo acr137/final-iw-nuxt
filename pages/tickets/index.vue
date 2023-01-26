@@ -157,7 +157,7 @@ export default {
       }
 
       try {
-        await this.$store.dispatch('tickets/crearTicket', data)
+        await this.$store.dispatch('tickets/createTicket', data)
         location.reload()
       } catch (error) {
         console.log(error)

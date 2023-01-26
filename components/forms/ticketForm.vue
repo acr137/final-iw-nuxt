@@ -31,17 +31,6 @@
       </div>
 
       <div class="w-full p-1.5 mb-1.5">
-        <p class="font-bold uppercase">Admin</p>
-        <input
-          id="admin"
-          v-model="dataForm.administradorDecoder"
-          class="w-full p-2 bg-gray-200 border border-gray-300 rounded"
-          type="email"
-          name="admin"
-        />
-      </div>
-
-      <div class="w-full p-1.5 mb-1.5">
         <p class="font-bold uppercase">Referencia</p>
         <input
           id="referencia"
@@ -100,12 +89,12 @@ export default {
     return {
       dataForm: {
         usuarioEnconder: null,
-        administradorDecoder: null,
+        administradorDecoder: 'luis290499@gmail.com',
         valoracion: 0,
         referenciaPago: null,
         asunto: null,
         descripcion: null,
-        status: 'Recién Creado',
+        status: 'ABIERTO',
       },
       errors: [],
     }
@@ -115,19 +104,14 @@ export default {
       this.errors = []
       if (
         !this.dataForm.usuarioEnconder ||
-        !this.dataForm.administradorDecoder ||
-        !this.dataForm.administradorDecoder ||
-        !this.dataForm.valoracion ||
         !this.dataForm.referenciaPago ||
         !this.dataForm.asunto ||
-        !this.dataForm.descripcion ||
-        !this.dataForm.status
+        !this.dataForm.descripcion
       ) {
         this.errors.push('Rellena todos los campos para continuar.')
       }
       if (
         this.dataForm.usuarioEnconder &&
-        this.dataForm.administradorDecoder &&
         this.dataForm.administradorDecoder &&
         this.dataForm.valoracion &&
         this.dataForm.referenciaPago &&
@@ -138,12 +122,12 @@ export default {
         this.$emit('crearTicket', this.dataForm)
         this.dataForm = {
           usuarioEnconder: null,
-          administradorDecoder: null,
-          valoracion: null,
+          administradorDecoder: 'luis290499@gmail.com',
+          valoracion: 0,
           referenciaPago: null,
           asunto: null,
           descripcion: null,
-          status: null,
+          status: 'ABIERTO',
         }
         this.errors = []
         this.$emit('closeForm')
