@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="refound" class="px-10 py-6 h-186">
+    <div v-if="devolucion" class="px-10 py-6 h-186">
       <div class="mx-2 mb-10">
         <div class="flex items-center">
           <svg-icon name="refound" class="mr-3 w-9 h-9" />
