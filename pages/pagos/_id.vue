@@ -85,7 +85,7 @@ export default {
     async getPayment() {
       const params = {
         token: this.token,
-        idPago: this.$route.params.id,
+        idPago: parseInt(this.$route.params.id),
       }
 
       try {
