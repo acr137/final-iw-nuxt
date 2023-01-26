@@ -107,7 +107,8 @@ export default {
           value: 60,
         },
       ],
-      users: [
+      users: [],
+      usersMock: [
         {
           id: 1,
           nombre: 'Juan Company',
@@ -132,9 +133,6 @@ export default {
       ],
     }
   },
-  // async created() {
-  //   await this.getUsers()
-  // },
   computed: {
     ...mapGetters({
       token: 'auth/getToken',
@@ -157,7 +155,9 @@ export default {
       }
     },
   },
-
+  async created() {
+    await this.getUsers()
+  },
   methods: {
     toggleCreateUserModal() {
       this.showCreateUserModal = !this.showCreateUserModal

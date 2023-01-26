@@ -16,8 +16,7 @@ export default {
 
   env: {
     // BaseUrl from API
-    API_URL:
-      'https://4a1a-2a02-2b60-1-1f8-e12e-5106-c8ec-e0a0.eu.ngrok.io/lac56-alu/TPVV/1.0.0/',
+    API_URL: 'https://d7ba-185-88-234-145.eu.ngrok.io/lac56-alu/TPVV/1.0.0/',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -45,6 +44,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     'nuxt-webfontloader',
     'cookie-universal-nuxt',
   ],
@@ -64,6 +64,7 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
+    proxy: true,
   },
 
   svgSprite: {
