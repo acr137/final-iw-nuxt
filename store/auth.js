@@ -8,7 +8,7 @@ export const state = () => ({
     nombreEmpresa: 'Alejandro S.L',
     tipoUsuario: 'admin',
   },
-  accessToken: 'sdsd',
+  accessToken: 'aSas',
   admin: true,
 })
 
