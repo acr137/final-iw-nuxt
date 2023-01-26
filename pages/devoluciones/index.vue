@@ -110,43 +110,9 @@ export default {
           value: 60,
         },
       ],
-      refounds: [
-        {
-          id: 1,
-          devolucionId: 22,
-          total: 120.3,
-          concepto: 'Compra memoria rom',
-          referencia: 'asdasd',
-          fecha: '09-12-2022 09:55:23',
-          estado: 'FINALIZADO',
-          detallesEstado: 'TARJETA APROBADA',
-        },
-        {
-          id: 1,
-          devolucionId: 22,
-          total: 120.3,
-          concepto: 'Compra disco duro',
-          referencia: '515adfas54',
-          fecha: '09-12-2022 09:55:23',
-          estado: 'DENEGADO',
-          detallesEstado: 'TARJETA DENEGADA',
-        },
-        {
-          id: 1,
-          devolucionId: 22,
-          total: 120.3,
-          concepto: 'Compra memoria Ram',
-          referencia: '515adfas54',
-          fecha: '09-12-2022 09:55:23',
-          estado: 'DENEGADO',
-          detallesEstado: 'TARJETA DENEGADA',
-        },
-      ],
+      refounds: [],
     }
   },
-  // async created() {
-  //   await this.getPayments()
-  // },
   computed: {
     ...mapGetters({
       token: 'auth/getToken',
@@ -171,9 +137,9 @@ export default {
       }
     },
   },
-  // async created() {
-  //   await this.getRefounds()
-  // },
+  async created() {
+    await this.getRefounds()
+  },
   methods: {
     goToRefound(id) {
       this.$router.push('/devoluciones/' + parseInt(id))

@@ -1,4 +1,4 @@
-import PaymentsService from '../services/payments.service'
+import RefoundsService from '../services/refounds.service'
 
 export const state = () => ({})
 
@@ -6,15 +6,15 @@ export const mutations = {}
 
 export const actions = {
   async getAllRefounds({ commit }, token) {
-    return await PaymentsService.getAllRefounds(token)
+    return await RefoundsService.getAllRefounds(token)
   },
 
-  async getRefound({ commit }, token, idPago) {
-    return await PaymentsService.getRefound(token, idPago)
+  async getRefound({ commit }, params) {
+    return await RefoundsService.getRefound(params)
   },
 
-  async makeRefound({ commit }, token, idPago) {
-    return await PaymentsService.makeRefound(token, idPago)
+  async makeRefound({ commit }, data) {
+    return await RefoundsService.makeRefound(data)
   },
 }
 

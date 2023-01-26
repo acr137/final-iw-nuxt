@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      token: 'auth/token',
+      token: 'auth/getToken',
     }),
   },
   async created() {

@@ -54,6 +54,7 @@
 </template>
 
 <script>
+// import { mapGetters } from 'vuex'
 import CustomButton from '@/components/button/CustomButton.vue'
 
 export default {
@@ -87,6 +88,7 @@ export default {
     returnToRefoundsList() {
       this.$router.push('/devoluciones')
     },
+    async getRefound() {},
   },
 }
 </script>
