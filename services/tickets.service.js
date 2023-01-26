@@ -15,9 +15,8 @@ class TicketsService {
     }
   }
 
-  async getTicket(token, idTicket) {
+  async getTicket(params) {
     const url = API_URL + 'tpvv/detallesTicket'
-    const params = { token, idTicket }
 
     try {
       const response = await axios.get(url, { params })
@@ -27,9 +26,8 @@ class TicketsService {
     }
   }
 
-  async deleteTicket(token, idTicket) {
+  async deleteTicket(params) {
     const url = API_URL + 'tpvv/borrarTicket'
-    const params = { token, idTicket }
 
     try {
       const response = await axios.delete(url, { params })
@@ -39,35 +37,34 @@ class TicketsService {
     }
   }
 
-  async createTicket(token, ticket) {
+  async createTicket(data) {
     const url = API_URL + 'tpvv/crearTicket'
-    const params = { token }
-    const body = { ticket }
 
     try {
-      const response = await axios.post(url, { params, body })
+      const response = await axios.post(url, data.ticket, {
+        params: { token: data.token },
+      })
       return response
     } catch (error) {
       console.log(error)
     }
   }
 
-  async rateTicket(token, idTicket, rating) {
+  async rateTicket(data) {
     const url = API_URL + 'tpvv/valorarTicket'
-    const params = { token, idTicket }
-    const body = { rating }
 
     try {
-      const response = await axios.post(url, { params, body })
+      const response = await axios.post(url, data.rating, {
+        params: { token: data.token, idTicket: data.idTicket },
+      })
       return response
     } catch (error) {
       console.log(error)
     }
   }
 
-  async chatTicket(token, idTicket) {
+  async chatTicket(params) {
     const url = API_URL + 'tpvv/chatTicket'
-    const params = { token, idTicket }
 
     try {
       const response = await axios.get(url, { params })
@@ -77,13 +74,13 @@ class TicketsService {
     }
   }
 
-  async sendMessage(token, idTicket, message) {
+  async sendMessage(data) {
     const url = API_URL + 'tpvv/chatTicket/enviarMessage'
-    const params = { token, idTicket }
-    const body = { message }
 
     try {
-      const response = await axios.post(url, { params, body })
+      const response = await axios.post(url, data.message, {
+        params: { token: data.token, idTicket: data.idTicket },
+      })
       return response
     } catch (error) {
       console.log(error)

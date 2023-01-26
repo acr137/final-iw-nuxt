@@ -107,32 +107,7 @@ export default {
           value: 60,
         },
       ],
-      tickets: [
-        {
-          id: 1,
-          usuarioEncoder: 'juan@gmail.com',
-          administradorEncoder: 'admin@gmail.com',
-          referenciaPago: '56asdasd',
-          asunto: 'Problema con la transacción',
-          status: 'ESPERA',
-        },
-        {
-          id: 1,
-          usuarioEncoder: 'gabriel@gmail.com',
-          administradorEncoder: 'admin@gmail.com',
-          referenciaPago: '56asdasd',
-          asunto: 'Problema con la transacción',
-          status: 'EN MARCHA',
-        },
-        {
-          id: 1,
-          usuarioEncoder: 'alejandro@gmail.com',
-          administradorEncoder: 'admin@gmail.com',
-          referenciaPago: '56asdasd',
-          asunto: 'Problema con la transacción',
-          status: 'ESPERA',
-        },
-      ],
+      tickets: [],
     }
   },
   computed: {
@@ -162,9 +137,9 @@ export default {
       }
     },
   },
-  // async created() {
-  //   await this.getAllTickets()
-  // },
+  async created() {
+    await this.getAllTickets()
+  },
   methods: {
     setInput(inputValue) {
       this.search = inputValue
@@ -176,9 +151,14 @@ export default {
       this.showCreateTicketModal = !this.showCreateTicketModal
     },
     async crearTicket(ticket) {
+      const data = {
+        token: this.token,
+        ticket,
+      }
+
       try {
-        await this.$store.dispatch('tickets/crearTicket', this.token, ticket)
-        this.$router.push('/tickets')
+        await this.$store.dispatch('tickets/crearTicket', data)
+        location.reload()
       } catch (error) {
         console.log(error)
       }
