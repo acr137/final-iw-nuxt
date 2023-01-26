@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       dataForm: {
-        usuarioEnconder: null,
+        usuarioEncoder: null,
         administradorDecoder: 'luis290499@gmail.com',
         valoracion: 0,
         referenciaPago: null,
@@ -103,7 +103,7 @@ export default {
     checkForm() {
       this.errors = []
       if (
-        !this.dataForm.usuarioEnconder ||
+        !this.dataForm.usuarioEncoder ||
         !this.dataForm.referenciaPago ||
         !this.dataForm.asunto ||
         !this.dataForm.descripcion
@@ -111,7 +111,7 @@ export default {
         this.errors.push('Rellena todos los campos para continuar.')
       }
       if (
-        this.dataForm.usuarioEnconder &&
+        this.dataForm.usuarioEncoder &&
         this.dataForm.administradorDecoder &&
         this.dataForm.valoracion &&
         this.dataForm.referenciaPago &&
@@ -121,7 +121,7 @@ export default {
       ) {
         this.$emit('crearTicket', this.dataForm)
         this.dataForm = {
-          usuarioEnconder: null,
+          usuarioEncoder: null,
           administradorDecoder: 'luis290499@gmail.com',
           valoracion: 0,
           referenciaPago: null,
