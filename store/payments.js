@@ -9,7 +9,7 @@ export const actions = {
     return await PaymentsService.getAllPayments(token)
   },
 
-  async getPayments({ commit }, params) {
+  async getPayment({ commit }, params) {
     return await PaymentsService.getPayment(params)
   },
 
