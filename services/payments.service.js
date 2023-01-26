@@ -6,33 +6,31 @@ class PaymentsService {
   async getAllPayments(token) {
     const url = API_URL + 'tpvv/listaPagos'
     const params = { token }
+
     try {
       const response = await axios.get(url, { params })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
   }
 
-  async getPayment(token, idPago) {
+  async getPayment(params) {
     const url = API_URL + 'tpvv/detallesPago'
-    const params = { token, idPago }
 
     try {
       const response = await axios.get(url, { params })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
   }
 
-  async makePayment(token, payment) {
+  async makePayment(data) {
     const url = API_URL + 'tpvv/realizarPago'
-    const params = { token }
-    const body = { payment }
 
     try {
-      const response = await axios.post(url, { params, body })
+      const response = await axios.post(url, data.payment, { params: { token: data.token }})
       return response
     } catch (error) {
       console.log(error)

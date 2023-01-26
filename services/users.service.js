@@ -17,7 +17,7 @@ class UserService {
 
   async getUser(params) {
     const url = API_URL + 'tpvv/detallesUsuario'
-    console.log(params)
+    
     try {
       const response = await axios.get(url, { params })
       return response.data

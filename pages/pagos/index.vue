@@ -109,43 +109,9 @@ export default {
           value: 60,
         },
       ],
-      payments: [
-        {
-          id: 1,
-          devolucionId: 22,
-          total: 120.3,
-          concepto: 'Compra memoria Ram',
-          referencia: '1000AAAA',
-          fecha: '09-12-2022 09:55:23',
-          estado: 'DENEGADO',
-          detallesEstado: 'TARJETA DENEGADA',
-        },
-        {
-          id: 1,
-          devolucionId: 22,
-          total: 120.3,
-          concepto: 'Compra memoria rom',
-          referencia: '515adfas54',
-          fecha: '09-12-2022 09:55:23',
-          estado: 'DENEGADO',
-          detallesEstado: 'TARJETA DENEGADA',
-        },
-        {
-          id: 1,
-          devolucionId: 22,
-          total: 120.3,
-          concepto: 'Compra disco duro',
-          referencia: '515adfas54',
-          fecha: '09-12-2022 09:55:23',
-          estado: 'APROBADO',
-          detallesEstado: 'TARJETA DENEGADA',
-        },
-      ],
+      payments: [],
     }
   },
-  // async created() {
-  //   await this.getPayments()
-  // },
   computed: {
     ...mapGetters({
       token: 'auth/getToken',
@@ -169,6 +135,9 @@ export default {
         return {}
       }
     },
+  },
+  async created() {
+    await this.getPayments()
   },
   methods: {
     toggleCreatePaymentModal() {

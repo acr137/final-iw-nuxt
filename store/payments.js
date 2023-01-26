@@ -9,12 +9,12 @@ export const actions = {
     return await PaymentsService.getAllPayments(token)
   },
 
-  async getPayments({ commit }, token, idPago) {
-    return await PaymentsService.getPayment(token, idPago)
+  async getPayments({ commit }, params) {
+    return await PaymentsService.getPayment(params)
   },
 
-  async makePayment({ commit }, token, payment) {
-    return await PaymentsService.makePayment(token, payment)
+  async makePayment({ commit }, data) {
+    return await PaymentsService.makePayment(data)
   },
 }
 
