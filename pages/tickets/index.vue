@@ -166,7 +166,7 @@ export default {
     async getAllTickets() {
       const params = {
         token: this.token,
-        estado: 'ABIERTO',
+        estadoFiltro: 'ABIERTO',
       }
 
       try {
