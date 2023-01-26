@@ -17,22 +17,24 @@
           </div>
         </div>
         <p class="mt-8 text-xl font-nunito">
+          <span class="mr-2 font-bold">Identificación:</span>{{ user.id }}
+        </p>
+        <p class="mt-8 text-xl font-nunito">
           <span class="mr-2 font-bold">Nombre:</span>{{ user.nombre }}
         </p>
         <p class="mt-8 text-xl font-nunito">
           <span class="mr-2 font-bold">Email:</span>{{ user.email }}
         </p>
         <p class="mt-8 text-xl font-nunito">
-          <span class="mr-2 font-bold">Password:</span>{{ user.password }}
-        </p>
-        <p class="mt-8 text-xl font-nunito">
           <span class="mr-2 font-bold">Empresa:</span>{{ user.nombreEmpresa }}
         </p>
         <div class="flex justify-center">
           <p
-            class="px-4 py-2 mt-5 mb-4 font-bold text-white bg-blue-500 rounded-lg"
+            class="flex items-center px-4 py-2 mt-5 mb-4 font-bold text-white uppercase rounded-lg"
+            :class="[{ 'bg-yellowIw': isAdmin }, { 'bg-blue-500': !isAdmin }]"
           >
-            {{ user.tipoUsuario }}
+            {{ user.tipoUsuario
+            }}<svg-icon :name="userIcon" class="w-6 h-6 ml-2 fill-white" />
           </p>
         </div>
       </div>
@@ -55,11 +57,10 @@ export default {
   computed: {
     ...mapGetters({
       user: 'auth/getUser',
+      isAdmin: 'auth/isAdmin',
     }),
-    maskedPassword() {
-      return (
-        '*'.repeat(this.user.password.length - 2) + this.user.password.slice(-2)
-      )
+    userIcon() {
+      return this.isAdmin ? 'admin' : 'user'
     },
   },
   methods: {

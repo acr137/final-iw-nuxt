@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold font-oswald">Pagos</h1>
       </div>
       <custom-button
-        v-if="isLogin"
+        v-if="isLogin && isAdmin"
         style-button="bg-yellowIw hover:bg-yellowIwHover px-3 py-2 text-white rounded-lg font-bold"
         text="Crear pago"
         @click="toggleCreatePaymentModal"
@@ -95,7 +95,6 @@ export default {
     return {
       showCreatePaymentModal: false,
       search: '',
-      isLogin: true,
       panelData: [
         {
           label: 'Total',
@@ -150,6 +149,8 @@ export default {
   computed: {
     ...mapGetters({
       token: 'auth/getToken',
+      isAdmin: 'auth/isAdmin',
+      isLogin: 'auth/isLogin',
     }),
     searches() {
       if (this.payments) {

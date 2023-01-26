@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="text-2xl font-bold font-oswald">¡Valora el ticket!</h1>
     <div class="flex items-center justify-center my-5">
       <div v-for="(star, index) in stars" :key="index">
         <svg-icon

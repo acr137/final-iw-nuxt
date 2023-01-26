@@ -1,8 +1,15 @@
 import AuthService from '@/services/auth.service'
 
 export const state = () => ({
-  user: {},
-  accessToken: '',
+  user: {
+    id: 1,
+    nombre: 'Alejandro Company',
+    email: 'alerinua@gmail.com',
+    nombreEmpresa: 'Alejandro S.L',
+    tipoUsuario: 'admin',
+  },
+  accessToken: 'sdsd',
+  admin: true,
 })
 
 export const mutations = {
@@ -12,8 +19,14 @@ export const mutations = {
   setUser(state, user) {
     state.user = user
   },
+  setUserType(state, type) {
+    type === 'normal' ? (state.admin = false) : (state.admin = true)
+  },
   deleteAccessToken(state) {
     state.accessToken = ''
+  },
+  deleteUser(state) {
+    state.user = {}
   },
 }
 
@@ -22,22 +35,25 @@ export const actions = {
     commit('setAccessToken', accessToken)
   },
 
-  logoutUser({ commit }) {
+  logout({ commit }) {
     commit('deleteAccessToken')
+    commit('deleteUser')
   },
 
   async login({ commit, dispatch }, user) {
-    const token = await AuthService.loginUser(user)
-    if (token !== '') {
+    const data = await AuthService.loginUser(user)
+    if (data.token !== '') {
       const date = new Date()
       date.setDate(date.getDate() + 30)
-      this.$cookies.set('auth', token, {
+      this.$cookies.set('auth', data.token, {
         expires: date,
         path: '/',
       })
-      commit('setAccessToken', token)
+
+      commit('setUserType', data.user.tipoUsuario)
+      commit('setAccessToken', data.token)
+      commit('setUser', data.user)
     }
-    return token
   },
 
   async getUserToken({ commit }, idUsuario) {
@@ -54,5 +70,8 @@ export const getters = {
   },
   getUser(state) {
     return state.user
+  },
+  isAdmin(state) {
+    return state.admin
   },
 }

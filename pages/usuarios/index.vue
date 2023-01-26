@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold font-oswald">Usuarios</h1>
       </div>
       <custom-button
-        v-if="isLogin"
+        v-if="isLogin && isAdmin"
         style-button="bg-yellowIw hover:bg-yellowIwHover px-3 py-2 text-white rounded-lg font-bold"
         text="Nuevo usuario"
         @click="toggleCreateUserModal"
@@ -138,6 +138,7 @@ export default {
   computed: {
     ...mapGetters({
       token: 'auth/getToken',
+      isAdmin: 'auth/isAdmin',
     }),
     searches() {
       if (this.users) {

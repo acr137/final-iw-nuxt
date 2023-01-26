@@ -26,10 +26,21 @@
         /> </template
     ></custom-button>
 
-    <div v-else>
-      <nuxt-link to="/my-account">
+    <div v-else class="flex items-center">
+      <custom-button
+        text="Logout"
+        style-button="bg-red-400 hover:bg-red-500 rounded-md font-bold text-white px-3 py-1"
+        @click="logout"
+      >
+        <template #icon>
+          <svg-icon
+            name="login"
+            class="w-5 h-5 text-white stroke-current fill-transparent"
+          /> </template
+      ></custom-button>
+      <nuxt-link to="/my-account" class="ml-2">
         <div class="p-4 bg-black rounded-full">
-          <svg-icon name="user" class="w-6 h-6 stroke-white" />
+          <svg-icon :name="userIcon" class="w-6 h-6 fill-white" />
         </div>
       </nuxt-link>
     </div>
@@ -71,9 +82,21 @@ export default {
   computed: {
     ...mapGetters({
       isLogin: 'auth/isLogin',
+      isAdmin: 'auth/isAdmin',
     }),
+    userIcon() {
+      return this.isAdmin ? 'admin' : 'user'
+    },
   },
   methods: {
+    async logout() {
+      try {
+        this.$router.push('/')
+        await this.$store.dispatch('auth/logout')
+      } catch (error) {
+        console.log(error)
+      }
+    },
     toggleLoginModal() {
       this.showLoginModal = !this.showLoginModal
     },

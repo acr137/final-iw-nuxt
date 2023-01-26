@@ -51,6 +51,7 @@
 
     <div class="flex items-center justify-between mx-2 mt-6">
       <custom-button
+        v-if="isAdmin"
         text="Eliminar ticket"
         style-button="bg-red-400 hover:bg-red-500 px-4 py-2 text-white rounded-md mr-2 font-bold"
         @click="toggleDeleteModal"
@@ -62,6 +63,7 @@
           />
         </template>
       </custom-button>
+      <div v-else></div>
       <div class="flex items-center">
         <custom-button
           text="Valorar ticket"
@@ -155,6 +157,7 @@ export default {
   computed: {
     ...mapGetters({
       token: 'auth/getToken',
+      isAdmin: 'auth/isAdmin',
     }),
   },
   // async created() {

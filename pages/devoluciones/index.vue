@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold font-oswald">Devoluciones</h1>
       </div>
       <custom-button
-        v-if="isLogin"
+        v-if="isLogin && isAdmin"
         style-button="bg-yellowIw hover:bg-yellowIwHover px-3 py-2 text-white rounded-lg font-bold"
         text="Crear devolución"
         @click="toggleCreateRefoundModal"
@@ -96,7 +96,6 @@ export default {
     return {
       showCreateRefoundModal: false,
       search: '',
-      isLogin: true,
       panelData: [
         {
           label: 'Total',
@@ -151,6 +150,8 @@ export default {
   computed: {
     ...mapGetters({
       token: 'auth/getToken',
+      isLogin: 'auth/isLogin',
+      isAdmin: 'auth/isAdmin',
     }),
     searches() {
       if (this.refounds) {
