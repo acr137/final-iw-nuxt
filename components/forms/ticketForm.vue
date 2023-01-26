@@ -112,12 +112,9 @@ export default {
       }
       if (
         this.dataForm.usuarioEncoder &&
-        this.dataForm.administradorDecoder &&
-        this.dataForm.valoracion &&
         this.dataForm.referenciaPago &&
         this.dataForm.asunto &&
-        this.dataForm.descripcion &&
-        this.dataForm.status
+        this.dataForm.descripcion
       ) {
         this.$emit('crearTicket', this.dataForm)
         this.dataForm = {
