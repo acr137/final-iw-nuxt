@@ -64,14 +64,16 @@ export default {
     },
   },
   methods: {
-    async editUser(data) {
+    async editUser(user) {
+      const data = {
+        token: this.token,
+        idUsuario: this.user.id,
+        user,
+      }
+
       try {
-        await this.$store.dispatch(
-          'users/editUser',
-          this.token,
-          this.user.id,
-          data
-        )
+        await this.$store.dispatch('users/editUser', data)
+        location.reload()
       } catch (error) {
         console.log(error)
       }
