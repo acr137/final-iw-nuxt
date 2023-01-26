@@ -164,10 +164,15 @@ export default {
       }
     },
     async getAllTickets() {
+      const params = {
+        token: this.token,
+        estado: 'ABIERTO',
+      }
+
       try {
         this.tickets = await this.$store.dispatch(
           'tickets/getAllTickets',
-          this.token
+          params
         )
       } catch (error) {
         console.log(error)

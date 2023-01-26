@@ -5,8 +5,8 @@ export const state = () => ({})
 export const mutations = {}
 
 export const actions = {
-  async getAllTickets({ commit }, token, estado) {
-    return await TicketsService.getAllTickets(token, estado)
+  async getAllTickets({ commit }, params) {
+    return await TicketsService.getAllTickets(params)
   },
 
   async getTicket({ commit }, params) {

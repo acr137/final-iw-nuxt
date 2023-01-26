@@ -3,9 +3,8 @@ import axios from 'axios'
 const API_URL = process.env.API_URL
 
 class TicketsService {
-  async getAllTickets(token, estado) {
+  async getAllTickets(params) {
     const url = API_URL + 'tpvv/listaTickets'
-    const params = { token, estado }
 
     try {
       const response = await axios.get(url, { params })
