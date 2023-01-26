@@ -160,9 +160,14 @@ export default {
       }
     },
     async crearPago(payment) {
+      const data = {
+        token: this.token,
+        payment,
+      }
+
       try {
-        await this.$store.dispatch('payments/makePayment', this.token, payment)
-        this.$router.push('/pagos')
+        await this.$store.dispatch('payments/makePayment', data)
+        location.reload()
       } catch (error) {
         console.log(error)
       }

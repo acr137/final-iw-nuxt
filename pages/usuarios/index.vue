@@ -132,7 +132,7 @@ export default {
       }
     },
   },
-  async mounted() {
+  async created() {
     await this.getUsers()
   },
   methods: {
@@ -155,7 +155,7 @@ export default {
     async crearUsuario(user) {
       const data = {
         token: this.token,
-        user
+        user,
       }
 
       try {
