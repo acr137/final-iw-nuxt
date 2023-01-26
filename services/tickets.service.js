@@ -67,7 +67,7 @@ class TicketsService {
 
     try {
       const response = await axios.get(url, { params })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
