@@ -153,7 +153,16 @@ export default {
       showMessageModal: false,
       showRatingModal: false,
       isLogin: true,
-      ticket: {},
+      ticket: {
+        id: 3,
+        usuarioEncoder: 'prueba@gmail.com',
+        administradorDecoder: 'luis290499@gmail.com',
+        valoracion: 3,
+        referenciaPago: '5as4d9aasd',
+        asunto: 'No se completa el pago',
+        descripcion: 'No funcionaaa, hacer algo ',
+        status: 'ABIERTO',
+      },
     }
   },
   computed: {
@@ -162,9 +171,9 @@ export default {
       isAdmin: 'auth/isAdmin',
     }),
   },
-  async created() {
-    await this.getTicket()
-  },
+  // async created() {
+  //   await this.getTicket()
+  // },
   methods: {
     returnToTicketsList() {
       this.$router.push('/tickets')
@@ -219,11 +228,11 @@ export default {
         console.log(error)
       }
     },
-    async rateTicket(rating) {
+    async rateTicket(numero) {
       const data = {
         token: this.token,
         idTicket: this.ticket.id,
-        numero: rating,
+        numero,
       }
 
       try {
