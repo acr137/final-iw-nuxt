@@ -237,7 +237,7 @@ export default {
 
       try {
         await this.$store.dispatch('tickets/rateTicket', data)
-        location.reload()
+        // location.reload()
         this.toggleRatingModal()
       } catch (error) {
         this.toggleRatingModal()

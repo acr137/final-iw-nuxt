@@ -49,10 +49,9 @@ class TicketsService {
 
   async rateTicket(data) {
     const url = API_URL + 'tpvv/valorarTicket'
-    console.log(data)
 
     try {
-      await axios.post(
+      await axios.put(
         url,
         { numero: data.numero },
         {
