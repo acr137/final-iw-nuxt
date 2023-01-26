@@ -161,13 +161,14 @@ export default {
       }
     },
     async crearDevolucion(devolucion) {
+      const data = {
+        token: this.token,
+        devolucion,
+      }
+
       try {
-        await this.$store.dispatch(
-          'refounds/makeRefound',
-          this.token,
-          devolucion
-        )
-        this.$router.push('/devoluciones')
+        await this.$store.dispatch('refounds/makeRefound', data)
+        location.reload()
       } catch (error) {
         console.log(error)
       }

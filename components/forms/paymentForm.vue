@@ -89,7 +89,7 @@
               type="submit"
               class="px-4 py-2 text-lg font-bold text-gray-800 rounded cursor-pointer hover:shadow-md bg-yellowIw hover:bg-yellowIwHover"
             >
-              Crear devolucion
+              Crear pago
             </button>
           </p>
         </div>
