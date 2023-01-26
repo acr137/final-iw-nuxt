@@ -50,9 +50,9 @@ export const actions = {
         path: '/',
       })
 
-      commit('setUserType', data.user.tipoUsuario)
+      commit('setUserType', data.tipoUsuario)
       commit('setAccessToken', data.token)
-      commit('setUser', data.user)
+      commit('setUser', data)
     }
   },
 
