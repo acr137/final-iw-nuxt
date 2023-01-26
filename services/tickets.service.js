@@ -51,7 +51,7 @@ class TicketsService {
     const url = API_URL + 'tpvv/valorarTicket'
 
     try {
-      await axios.post(url, data.rating, {
+      await axios.post(url, data.numero, {
         params: { token: data.token, idTicket: data.idTicket },
       })
     } catch (error) {

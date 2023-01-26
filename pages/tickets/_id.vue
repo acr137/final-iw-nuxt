@@ -219,11 +219,11 @@ export default {
         console.log(error)
       }
     },
-    async rateTicket(rating) {
+    async rateTicket(numero) {
       const data = {
         token: this.token,
         idTicket: this.ticket.id,
-        rating,
+        numero,
       }
 
       try {
