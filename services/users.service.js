@@ -17,7 +17,7 @@ class UserService {
 
   async getUser(params) {
     const url = API_URL + 'tpvv/detallesUsuario'
-    
+
     try {
       const response = await axios.get(url, { params })
       return response.data
@@ -50,7 +50,9 @@ class UserService {
     const url = API_URL + 'tpvv/modificarUsuario'
 
     try {
-      await axios.put(url, data.user, { params: { token: data.token, idUsuario: data.idUsuario }})
+      await axios.put(url, data.user, {
+        params: { token: data.token, idUsuario: data.idUsuario },
+      })
     } catch (error) {
       console.log(error)
     }

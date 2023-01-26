@@ -8,15 +8,14 @@ class RefoundsService {
     const params = { token }
     try {
       const response = await axios.get(url, { params })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
   }
 
-  async getRefound(token, idPago) {
+  async getRefound(params) {
     const url = API_URL + 'tpvv/detallesDevolucion'
-    const params = { token, idPago }
 
     try {
       const response = await axios.get(url, { params })
@@ -26,13 +25,13 @@ class RefoundsService {
     }
   }
 
-  async makeRefound(token, idPago) {
+  async makeRefound(data) {
     const url = API_URL + 'tpvv/realizarDevolucion'
-    const params = { token, idPago }
 
     try {
-      const response = await axios.post(url, { params })
-      return response
+      await axios.post(url, data.refound, {
+        params: { token: data.token },
+      })
     } catch (error) {
       console.log(error)
     }

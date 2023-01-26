@@ -30,8 +30,9 @@ class PaymentsService {
     const url = API_URL + 'tpvv/realizarPago'
 
     try {
-      const response = await axios.post(url, data.payment, { params: { token: data.token }})
-      return response
+      await axios.post(url, data.payment, {
+        params: { token: data.token },
+      })
     } catch (error) {
       console.log(error)
     }
