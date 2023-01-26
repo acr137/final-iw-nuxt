@@ -17,7 +17,7 @@ class UserService {
 
   async getUser(params) {
     const url = API_URL + 'tpvv/detallesUsuario'
-
+    console.log(params)
     try {
       const response = await axios.get(url, { params })
       return response.data
@@ -26,39 +26,31 @@ class UserService {
     }
   }
 
-  async deleteUser(token, idUsuario) {
+  async deleteUser(params) {
     const url = API_URL + 'tpvv/borrarUsuario'
-    const params = { token, idUsuario }
 
     try {
-      const response = await axios.delete(url, { params })
-      return response
+      await axios.delete(url, { params })
     } catch (error) {
       console.log(error)
     }
   }
 
-  async createUser(token, user) {
+  async createUser(data) {
     const url = API_URL + 'tpvv/crearUsuario'
-    const params = { token }
-    const body = { user }
 
     try {
-      const response = await axios.post(url, { params, body })
-      return response
+      await axios.post(url, data.user, { params: { token: data.token } })
     } catch (error) {
       console.log(error)
     }
   }
 
-  async editUser(token, idUsuario, data) {
+  async editUser(data) {
     const url = API_URL + 'tpvv/modificarUsuario'
-    const params = { token, idUsuario }
-    const body = { data }
 
     try {
-      const response = await axios.put(url, { params, body })
-      return response
+      await axios.put(url, data.user, { params: { token: data.token, idUsuario: data.idUsuario }})
     } catch (error) {
       console.log(error)
     }

@@ -113,7 +113,7 @@ export default {
     async getUser() {
       const params = {
         token: this.token,
-        idUsuario: this.$route.params.id
+        idUsuario: parseInt(this.$route.params.id)
       }
 
       try {
@@ -129,8 +129,13 @@ export default {
       this.showDeleteModal = !this.showDeleteModal
     },
     async deleteUser() {
+      const params = {
+        token: this.token,
+        idUsuario: parseInt(this.user.id)
+      }
+
       try {
-        await this.$store.dispatch('users/deleteUser', this.token, this.user.id)
+        await this.$store.dispatch('users/deleteUser', params)
         this.toggleDeleteModal()
         this.$router.push('/usuarios')
       } catch (error) {
@@ -138,14 +143,16 @@ export default {
         console.log(error)
       }
     },
-    async editUser(data) {
+    async editUser(user) {
+      const data = {
+        token: this.token,
+        idUsuario: this.user.id,
+        user
+      }
+
       try {
-        await this.$store.dispatch(
-          'users/editUser',
-          this.token,
-          this.user.id,
-          data
-        )
+        await this.$store.dispatch('users/editUser', data)
+        location.reload()
       } catch (error) {
         console.log(error)
       }

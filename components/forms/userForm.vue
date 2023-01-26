@@ -67,7 +67,7 @@
           <div class="flex items-center">
             <input
               id="default-checkbox"
-              v-model="dataForm.admin"
+              v-model="admin"
               type="checkbox"
               class="w-6 h-6 bg-gray-100 border-gray-300 rounded hover:ring-2 hover:shadow-xl"
             />
@@ -101,12 +101,13 @@ export default {
   },
   data() {
     return {
+      admin: false,
       dataForm: {
         nombre: null,
         email: null,
         password: null,
         nombreEmpresa: null,
-        admin: false,
+        tipoUsuario: null,
       },
       errors: [],
     }
@@ -132,13 +133,14 @@ export default {
         this.dataForm.email &&
         this.dataForm.password
       ) {
+        this.admin ? this.dataForm.tipoUsuario = 'admin' : this.dataForm.tipoUsuario = 'normal'
         this.$emit('crearUsuario', this.dataForm)
         this.dataForm = {
           nombre: null,
           email: null,
           password: null,
           nombreEmpresa: null,
-          admin: false,
+          tipoUsuario: null,
         }
         this.errors = []
         this.$emit('closeForm')

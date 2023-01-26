@@ -13,16 +13,16 @@ export const actions = {
     return await UserService.getUser(params)
   },
 
-  async deleteUser({ commit }, token, idUsuario) {
-    return await UserService.deleteUser(token, idUsuario)
+  async deleteUser({ commit }, params) {
+    await UserService.deleteUser(params)
   },
 
-  async createUser({ commit }, token, user) {
-    return await UserService.createUser(token, user)
+  async createUser({ commit }, data) {
+    await UserService.createUser(data)
   },
 
-  async editUser({ commit }, token, idUsuario, user) {
-    return await UserService.editUser(token, idUsuario, user)
+  async editUser({ commit }, data) {
+    await UserService.editUser(data)
   },
 
   async regenerateUserToken({ commit }, token) {

@@ -132,7 +132,7 @@ export default {
       }
     },
   },
-  async created() {
+  async mounted() {
     await this.getUsers()
   },
   methods: {
@@ -153,9 +153,14 @@ export default {
       this.search = inputValue
     },
     async crearUsuario(user) {
+      const data = {
+        token: this.token,
+        user
+      }
+
       try {
-        await this.$store.dispatch('users/crearUsuario', this.token, user)
-        this.$router.push('/usuarios')
+        await this.$store.dispatch('users/createUser', data)
+        location.reload()
       } catch (error) {
         console.log(error)
       }
