@@ -219,15 +219,16 @@ export default {
         console.log(error)
       }
     },
-    async rateTicket(numero) {
+    async rateTicket(rating) {
       const data = {
         token: this.token,
         idTicket: this.ticket.id,
-        numero,
+        numero: rating,
       }
 
       try {
         await this.$store.dispatch('tickets/rateTicket', data)
+        location.reload()
         this.toggleRatingModal()
       } catch (error) {
         this.toggleRatingModal()
