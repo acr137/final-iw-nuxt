@@ -34,7 +34,11 @@
             </p>
             <p class="mb-4">
               <span class="font-bold">Admin:</span>
-              {{ ticket.administradorEncoder }}
+              {{ ticket.administradorDecoder }}
+            </p>
+            <p class="mb-4">
+              <span class="font-bold">Valoración:</span>
+              {{ ticket.valoracion }}
             </p>
             <p
               class="px-4 py-1 mt-10 font-bold text-white uppercase bg-yellowIw w-fit rounded-xl"

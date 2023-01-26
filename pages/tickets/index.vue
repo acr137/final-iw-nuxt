@@ -35,7 +35,7 @@
         <thead class="bg-gray-200 border border-gray-300 shadow-md">
           <tr>
             <th>Usuario</th>
-            <th>Tipo</th>
+            <th>Admin</th>
             <th>Referencia</th>
             <th>Asunto</th>
             <th>Estado</th>
@@ -44,7 +44,7 @@
         <tbody class="text-center">
           <tr v-for="(ticket, index) in searches" :key="index" class="border-b">
             <td>{{ ticket.usuarioEncoder }}</td>
-            <td>{{ ticket.administradorEncoder }}</td>
+            <td>{{ ticket.administradorDecoder }}</td>
             <td>
               <span
                 class="text-blue-500 cursor-pointer hover:underline"
