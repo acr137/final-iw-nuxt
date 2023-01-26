@@ -9,8 +9,8 @@ export const actions = {
     return await UserService.getAllUsers(token)
   },
 
-  async getUser({ commit }, token, idUsuario) {
-    return await UserService.getUser(token, idUsuario)
+  async getUser({ commit }, params) {
+    return await UserService.getUser(params)
   },
 
   async deleteUser({ commit }, token, idUsuario) {

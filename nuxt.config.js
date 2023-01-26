@@ -16,7 +16,7 @@ export default {
 
   env: {
     // BaseUrl from API
-    API_URL: 'https://d7ba-185-88-234-145.eu.ngrok.io/lac56-alu/TPVV/1.0.0/',
+    API_URL: 'http://localhost:50352/lac56-alu/TPVV/1.0.0/',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

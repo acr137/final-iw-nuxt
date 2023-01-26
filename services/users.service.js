@@ -9,19 +9,18 @@ class UserService {
 
     try {
       const response = await axios.get(url, { params })
-      console.log(response)
+      return response.data
     } catch (error) {
       console.log(error)
     }
   }
 
-  async getUser(token, idUsuario) {
+  async getUser(params) {
     const url = API_URL + 'tpvv/detallesUsuario'
-    const params = { token, idUsuario }
 
     try {
       const response = await axios.get(url, { params })
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }

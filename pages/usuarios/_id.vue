@@ -1,5 +1,6 @@
 <template>
-  <div class="px-10 py-6 h-186">
+<div>
+  <div v-if="user" class="px-10 py-6 h-186">
     <div class="flex items-center justify-between mx-2 mb-4">
       <div class="flex items-center">
         <svg-icon name="users" class="mr-3 w-9 h-9" />
@@ -73,6 +74,8 @@
       </template>
     </modal-base>
   </div>
+</div>
+  
 </template>
 
 <script>
@@ -91,32 +94,34 @@ export default {
   data() {
     return {
       showDeleteModal: false,
-      user: {
-        id: 1,
-        nombre: 'Alejandro Company',
-        email: 'alerinua@gmail.com',
-        password: '223',
-        nombreEmpresa: 'Alejandro S.L',
-        tipoUsuario: 'normal',
-      },
+      user: null
     }
   },
   computed: {
     ...mapGetters({
       isAdmin: 'auth/isAdmin',
+      token: 'auth/getToken'
     }),
     userIcon() {
       return this.user.tipoUsuario === 'admin' ? 'admin' : 'user'
     },
   },
-  // async created() {
-  //   this.user = await this.$store.dispatch(
-  //     'users/getUser',
-  //     this.token
-  //     this.$route.params.id
-  //   )
-  // },
+  async created() {
+    await this.getUser()
+  },
   methods: {
+    async getUser() {
+      const params = {
+        token: this.token,
+        idUsuario: this.$route.params.id
+      }
+
+      try {
+        this.user = await this.$store.dispatch('users/getUser', params)
+      } catch (error) {
+        console.log(error)
+      }
+    },
     returnToUserList() {
       this.$router.push('/usuarios')
     },

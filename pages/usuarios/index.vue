@@ -108,29 +108,6 @@ export default {
         },
       ],
       users: [],
-      usersMock: [
-        {
-          id: 1,
-          nombre: 'Juan Company',
-          email: 'juan@gmail.com',
-          nombreEmpresa: 'Alejandro S.L',
-          tipoUsuario: 'normal',
-        },
-        {
-          id: 1,
-          nombre: 'Alejandro Company',
-          email: 'pepe@gmail.com',
-          nombreEmpresa: 'Alejandro S.L',
-          tipoUsuario: 'normal',
-        },
-        {
-          id: 1,
-          nombre: 'Alejandro Company',
-          email: 'alerinua@gmail.com',
-          nombreEmpresa: 'Alejandro S.L',
-          tipoUsuario: 'admin',
-        },
-      ],
     }
   },
   computed: {
