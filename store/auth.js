@@ -4,7 +4,7 @@ export const state = () => ({
   user: {
     id: 1,
     nombre: 'Iw Admin',
-    email: 'prueba@gmail.com',
+    email: 'luis290499@gmail.com',
     nombreEmpresa: 'IW Tpvv S.L',
     tipoUsuario: 'admin',
   },
