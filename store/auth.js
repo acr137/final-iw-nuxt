@@ -3,9 +3,9 @@ import AuthService from '@/services/auth.service'
 export const state = () => ({
   user: {
     id: 1,
-    nombre: 'Alejandro Company',
-    email: 'alerinua@gmail.com',
-    nombreEmpresa: 'Alejandro S.L',
+    nombre: 'Iw Admin',
+    email: 'prueba@gmail.com',
+    nombreEmpresa: 'IW Tpvv S.L',
     tipoUsuario: 'admin',
   },
   accessToken: 'ZNOZZUHqpnASPLgi7tSf3UPS3',
