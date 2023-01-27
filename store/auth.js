@@ -20,7 +20,7 @@ export const mutations = {
     state.user = user
   },
   setUserType(state, type) {
-    type === 'normal' ? (state.admin = false) : (state.admin = true)
+    type === 'admin' ? (state.admin = true) : (state.admin = false)
   },
   deleteAccessToken(state) {
     state.accessToken = ''
