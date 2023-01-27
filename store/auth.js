@@ -1,14 +1,9 @@
+import Cookies from 'js-cookie'
 import AuthService from '@/services/auth.service'
 
 export const state = () => ({
-  user: {
-    id: 1,
-    nombre: 'Iw Admin',
-    email: 'prueba@gmail.com',
-    nombreEmpresa: 'IW Tpvv S.L',
-    tipoUsuario: 'admin',
-  },
-  accessToken: 'ZNOZZUHqpnASPLgi7tSf3UPS3',
+  user: {},
+  accessToken: '',
   admin: true,
 })
 
@@ -36,6 +31,7 @@ export const actions = {
   },
 
   logout({ commit }) {
+    Cookies.remove('auth')
     commit('deleteAccessToken')
     commit('deleteUser')
   },
@@ -43,12 +39,7 @@ export const actions = {
   async login({ commit, dispatch }, user) {
     const data = await AuthService.loginUser(user)
     if (data.token !== '') {
-      const date = new Date()
-      date.setDate(date.getDate() + 30)
-      this.$cookies.set('auth', data.token, {
-        expires: date,
-        path: '/',
-      })
+      Cookies.set('auth', { token: data.token, id: data.id })
 
       commit('setUserType', data.tipoUsuario)
       commit('setAccessToken', data.token)
